@@ -230,11 +230,18 @@ export const Navbar: React.FC = () => {
               )}
             </div>
 
-            {/* Cart Button (for student role) */}
-            {user?.role === 'STUDENT' && (
+            {/* Cart Button */}
+            {(user?.role === 'STUDENT' || cartItemsCount > 0) && (
               <button
-                onClick={() => setActiveNavTab('cart')}
+                onClick={() => {
+                  if (user?.role === 'STUDENT') {
+                    setActiveNavTab('cart');
+                  } else {
+                    window.location.href = '/menu';
+                  }
+                }}
                 className="relative flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs shadow-md shadow-brand-500/25 transition-all active:scale-95"
+                title="View your plate/cart"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span className="hidden sm:inline">Cart</span>

@@ -77,10 +77,10 @@ export const StudentCart: React.FC = () => {
         <div className="w-16 h-16 rounded-3xl bg-brand-50 text-brand-600 flex items-center justify-center mx-auto text-2xl shadow-inner animate-float-gentle">
           <ShoppingBag className="w-8 h-8" />
         </div>
-        <h3 className="text-lg font-black text-slate-900 tracking-tight">Your Cart is Empty</h3>
+        <h3 className="text-lg font-black text-slate-900 tracking-tight">Your cart is hungry.</h3>
         <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
-          Looks like you haven&apos;t added anything to your plate yet. Explore delicious items from{' '}
-          <strong className="text-brand-600">{selectedCanteen?.name || 'campus canteens'}</strong>!
+          Add something delicious! Browse meals, snacks, and chilled beverages from{' '}
+          <strong className="text-brand-600">{selectedCanteen?.name || 'campus canteens'}</strong>.
         </p>
         <button
           onClick={() => setActiveNavTab('home')}

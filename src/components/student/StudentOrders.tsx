@@ -227,7 +227,7 @@ export const StudentOrders: React.FC = () => {
 
           {/* Visual Timeline (Section 18 & 35) */}
           {!isTerminated ? (
-            <div className="py-2">
+            <div className="py-3">
               <div className="flex items-center justify-between relative">
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-100 z-0" />
                 <div
@@ -236,32 +236,38 @@ export const StudentOrders: React.FC = () => {
                 />
 
                 {[
-                  { step: 1, label: 'Placed', icon: '✓' },
-                  { step: 2, label: 'Accepted', icon: '✓' },
-                  { step: 3, label: 'Preparing', icon: '🍳' },
-                  { step: 4, label: 'Ready', icon: '🔔' },
+                  { step: 1, label: 'Order Confirmed', icon: '✓' },
+                  { step: 2, label: 'Accepted by Canteen', icon: '✓' },
+                  { step: 3, label: 'Preparing', icon: '●' },
+                  { step: 4, label: 'Ready', icon: '○' },
                   {
                     step: 5,
                     label: currentViewOrder.orderType === 'HOSTEL_DELIVERY' ? 'Delivered' : 'Picked Up',
-                    icon: '🎉',
+                    icon: '○',
                   },
                 ].map((s) => {
-                  const isDone = currentStep >= s.step;
+                  const isDone = currentStep > s.step;
                   const isCurrent = currentStep === s.step;
                   return (
                     <div key={s.step} className="flex flex-col items-center relative z-10">
                       <div
-                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black transition-all ${
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all ${
                           isDone
-                            ? 'bg-brand-600 text-white shadow-md'
+                            ? 'bg-emerald-600 text-white shadow-sm'
+                            : isCurrent
+                            ? 'bg-brand-600 text-white shadow-md ring-4 ring-brand-500/25 scale-110 pulse-active'
                             : 'bg-white border-2 border-slate-200 text-slate-400'
-                        } ${isCurrent ? 'ring-4 ring-brand-500/20 scale-110' : ''}`}
+                        }`}
                       >
-                        {s.icon}
+                        {isDone ? '✓' : isCurrent ? '●' : '○'}
                       </div>
                       <span
-                        className={`text-[10px] mt-1.5 font-bold ${
-                          isDone ? 'text-brand-700' : 'text-slate-400'
+                        className={`text-[10px] mt-2 font-bold text-center max-w-[70px] leading-tight ${
+                          isCurrent
+                            ? 'text-brand-700 font-black'
+                            : isDone
+                            ? 'text-emerald-700'
+                            : 'text-slate-400'
                         }`}
                       >
                         {s.label}
@@ -269,6 +275,35 @@ export const StudentOrders: React.FC = () => {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Kitchen Status Banner */}
+              <div className="mt-4 p-3 rounded-2xl bg-brand-50/70 border border-brand-200/80 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-600"></span>
+                  </span>
+                  <div className="text-xs">
+                    <span className="text-slate-500 font-medium">Kitchen Status: </span>
+                    <strong className="text-brand-900 font-extrabold">
+                      {currentViewOrder.status === 'PREPARING'
+                        ? 'Preparing your order'
+                        : currentViewOrder.status === 'READY'
+                        ? 'Food is ready for collection'
+                        : currentViewOrder.status === 'OUT_FOR_DELIVERY'
+                        ? 'Delivery partner is on the way to your hostel'
+                        : currentViewOrder.status === 'ACCEPTED'
+                        ? 'Order accepted by kitchen'
+                        : currentViewOrder.status === 'DELIVERED' || currentViewOrder.status === 'COMPLETED'
+                        ? 'Order delivered & completed'
+                        : 'Order placed & awaiting confirmation'}
+                    </strong>
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-brand-700 bg-white px-2 py-0.5 rounded-lg border border-brand-200 shadow-2xs">
+                  Active
+                </span>
               </div>
             </div>
           ) : (

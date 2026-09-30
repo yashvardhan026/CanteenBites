@@ -20,7 +20,7 @@ import {
 
 export default function Home() {
   const { user, switchRole } = useApp();
-  const [viewMode, setViewMode] = useState<'app' | 'landing'>('app');
+  const [viewMode, setViewMode] = useState<'app' | 'landing'>('landing');
 
   return (
     <div>

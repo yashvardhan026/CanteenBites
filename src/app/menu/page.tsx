@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
 import { MenuItem, FoodCategory } from '@/types';
@@ -16,8 +16,13 @@ import {
   Sparkles,
   Utensils,
   Check,
+  ArrowUpDown,
+  ShoppingBag,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { Footer } from '@/components/common/Footer';
+
+type SortOption = 'POPULAR' | 'PRICE_LOW_HIGH' | 'PRICE_HIGH_LOW' | 'RATING';
 
 export default function MenuPage() {
   const {
@@ -31,12 +36,16 @@ export default function MenuPage() {
     setActiveNavTab,
     showToast,
   } = useApp();
+
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory | 'ALL'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [vegOnly, setVegOnly] = useState(false);
+  const [inStockOnly, setInStockOnly] = useState(false);
   const [maxPrice, setMaxPrice] = useState(300);
+  const [maxPrepTime, setMaxPrepTime] = useState<number | 'ANY'>('ANY');
+  const [sortBy, setSortBy] = useState<SortOption>('POPULAR');
 
   useEffect(() => {
     setLoading(true);
@@ -51,73 +60,133 @@ export default function MenuPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const filteredItems = menuItems.filter((item) => {
-    if (selectedCategory !== 'ALL' && item.category !== selectedCategory) return false;
-    if (vegOnly && !item.isVeg) return false;
-    if (item.price > maxPrice) return false;
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      const matchName = item.name.toLowerCase().includes(q);
-      const matchDesc = item.description?.toLowerCase().includes(q);
-      const matchCanteen = item.canteenName?.toLowerCase().includes(q);
-      if (!matchName && !matchDesc && !matchCanteen) return false;
+  const cartTotalItems = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+  const cartTotalPrice = cart.reduce((acc, curr) => acc + curr.menuItem.price * curr.quantity, 0);
+
+  const filteredItems = useMemo(() => {
+    let items = menuItems.filter((item) => {
+      if (selectedCategory !== 'ALL' && item.category !== selectedCategory) return false;
+      if (vegOnly && !item.isVeg) return false;
+      if (inStockOnly && !item.isAvailable) return false;
+      if (item.price > maxPrice) return false;
+      if (maxPrepTime !== 'ANY' && item.prepTimeMinutes > maxPrepTime) return false;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchName = item.name.toLowerCase().includes(q);
+        const matchDesc = item.description?.toLowerCase().includes(q);
+        const matchCanteen = item.canteenName?.toLowerCase().includes(q);
+        if (!matchName && !matchDesc && !matchCanteen) return false;
+      }
+      return true;
+    });
+
+    // Sorting
+    switch (sortBy) {
+      case 'PRICE_LOW_HIGH':
+        items.sort((a, b) => a.price - b.price);
+        break;
+      case 'PRICE_HIGH_LOW':
+        items.sort((a, b) => b.price - a.price);
+        break;
+      case 'RATING':
+        items.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'POPULAR':
+      default:
+        items.sort((a, b) => (b.rating * 10 - b.price * 0.05) - (a.rating * 10 - a.price * 0.05));
+        break;
     }
-    return true;
-  });
+
+    return items;
+  }, [menuItems, selectedCategory, vegOnly, inStockOnly, maxPrice, maxPrepTime, searchQuery, sortBy]);
 
   const handleAddFood = (item: MenuItem) => {
     addToCart(item);
-    showToast('Added to Cart', `${item.name} added!`, 'success');
+    showToast('Added to Plate', `${item.name} added to cart!`, 'success');
+  };
+
+  const handleResetFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('ALL');
+    setVegOnly(false);
+    setInStockOnly(false);
+    setMaxPrice(300);
+    setMaxPrepTime('ANY');
+    setSortBy('POPULAR');
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 text-left">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-between text-left">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 text-left w-full">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-3 max-w-2xl">
+          <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold border border-brand-200">
               <Utensils className="w-3.5 h-3.5 text-brand-600" />
-              <span>Campus Culinary Delights</span>
+              <span>Campus Culinary Menus</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               Explore Canteen Menus
             </h1>
             <p className="text-xs sm:text-sm text-slate-600">
-              Browse freshly cooked meals, quick snacks, hot beverages, and desserts available across campus canteens today.
+              Order fresh meals, snacks, and beverages across SVIET Main Canteen, Food Court, and Hostel Canteen.
             </p>
           </div>
 
           <Link
             href="/"
             onClick={() => setActiveNavTab('cart')}
-            className="px-5 py-2.5 rounded-2xl bg-brand-600 text-white font-bold text-xs shadow-md hover:bg-brand-700 transition-all flex items-center gap-2 self-start md:self-auto"
+            className="px-5 py-2.5 rounded-2xl bg-brand-600 text-white font-bold text-xs shadow-md shadow-brand-500/25 hover:bg-brand-700 transition-all flex items-center gap-2 self-start md:self-auto"
           >
-            <span>View Active Cart</span>
+            <ShoppingBag className="w-4 h-4" />
+            <span>View Active Plate ({cartTotalItems})</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Search & Filter Bar */}
-        <div className="p-4 sm:p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+        {/* Search, Sort & Filters Card */}
+        <div className="p-4 sm:p-6 rounded-3xl bg-white border border-slate-200 shadow-card space-y-4">
+          {/* Main Search Row */}
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <div className="relative flex-1 w-full">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search food by name, e.g. Paneer roll, Dosa, Burger..."
+                placeholder="Search for food, drinks or snacks..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white text-xs font-medium focus:ring-4 focus:ring-brand-500/15 focus:border-brand-500 focus:shadow-glow-sm outline-none transition-all duration-200"
               />
             </div>
 
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 w-full sm:w-auto">
+                <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
+                <span className="text-[11px] text-slate-400 uppercase">Sort:</span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as SortOption)}
+                  className="bg-transparent font-bold text-xs text-slate-900 outline-none cursor-pointer"
+                >
+                  <option value="POPULAR">Popular</option>
+                  <option value="PRICE_LOW_HIGH">Price Low → High</option>
+                  <option value="PRICE_HIGH_LOW">Price High → Low</option>
+                  <option value="RATING">Highest Rating</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Filters Row */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-100">
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Veg Only Toggle */}
               <button
                 onClick={() => setVegOnly(!vegOnly)}
-                className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 active:scale-95 ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 active:scale-95 ${
                   vegOnly
-                    ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-sm'
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-2xs'
                     : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
                 }`}
               >
@@ -126,48 +195,53 @@ export default function MenuPage() {
                 {vegOnly && <Check className="w-3 h-3 text-emerald-600" />}
               </button>
 
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <span>Max: ₹{maxPrice}</span>
-                <input
-                  type="range"
-                  min="20"
-                  max="300"
-                  step="10"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(Number(e.target.value))}
-                  className="w-24 sm:w-28 accent-brand-600"
-                />
+              {/* In Stock Only Toggle */}
+              <button
+                onClick={() => setInStockOnly(!inStockOnly)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 active:scale-95 ${
+                  inStockOnly
+                    ? 'bg-brand-50 border-brand-300 text-brand-700 shadow-2xs'
+                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                <span>Available Now</span>
+                {inStockOnly && <Check className="w-3 h-3 text-brand-600" />}
+              </button>
+
+              {/* Prep Time Filter */}
+              <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-200">
+                <Clock className="w-3.5 h-3.5 text-slate-400" />
+                <span className="text-[11px] text-slate-400 uppercase">Prep:</span>
+                <select
+                  value={maxPrepTime}
+                  onChange={(e) =>
+                    setMaxPrepTime(e.target.value === 'ANY' ? 'ANY' : Number(e.target.value))
+                  }
+                  className="bg-transparent font-bold text-xs text-slate-800 outline-none cursor-pointer"
+                >
+                  <option value="ANY">Any Time</option>
+                  <option value="10">Under 10 min</option>
+                  <option value="15">Under 15 min</option>
+                </select>
               </div>
+            </div>
+
+            {/* Price Range Slider */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 ml-auto">
+              <span>Max: ₹{maxPrice}</span>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="10"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+                className="w-24 sm:w-32 accent-brand-600"
+              />
             </div>
           </div>
 
-          {/* Quick suggestions chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs text-slate-500">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex-shrink-0">Popular:</span>
-            {['Paneer Roll', 'Cold Coffee', 'Veg Burger', 'Masala Dosa', 'Brownie'].map((quickTerm) => (
-              <button
-                key={quickTerm}
-                onClick={() => setSearchQuery(quickTerm)}
-                className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-all flex-shrink-0 active:scale-95 ${
-                  searchQuery.toLowerCase() === quickTerm.toLowerCase()
-                    ? 'bg-brand-50 border-brand-300 text-brand-700 font-bold'
-                    : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-600'
-                }`}
-              >
-                {quickTerm}
-              </button>
-            ))}
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="px-2 py-1 text-[11px] text-rose-600 font-bold hover:underline flex-shrink-0"
-              >
-                Clear
-              </button>
-            )}
-          </div>
-
-          {/* Categories Horizontal Tabs */}
+          {/* Categories Horizontal Tabs (Scrollable on mobile) */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar border-t border-slate-100 pt-3">
             <button
               onClick={() => setSelectedCategory('ALL')}
@@ -221,22 +295,22 @@ export default function MenuPage() {
             ))}
           </div>
         ) : filteredItems.length === 0 ? (
-          <div className="py-20 text-center space-y-3 bg-white rounded-3xl border border-slate-200 animate-scale-in">
-            <Utensils className="w-10 h-10 text-slate-300 mx-auto animate-float-gentle" />
-            <h3 className="font-bold text-slate-800 text-sm">No items found matching your filters</h3>
-            <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Try adjusting your search terms, resetting category selection or increasing the maximum price filter.
-            </p>
+          /* Empty State: Oops! No bites found. */
+          <div className="py-20 text-center space-y-4 bg-white rounded-3xl border border-slate-200 p-8 max-w-md mx-auto shadow-card animate-scale-in">
+            <div className="w-16 h-16 rounded-3xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto text-2xl shadow-inner animate-float-gentle">
+              🍔
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-lg font-black text-slate-900 tracking-tight">Oops! No bites found.</h3>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Try searching for something else, resetting category filters, or increasing the max price.
+              </p>
+            </div>
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('ALL');
-                setVegOnly(false);
-                setMaxPrice(300);
-              }}
-              className="mt-2 px-4 py-2 rounded-xl bg-brand-50 text-brand-700 text-xs font-bold hover:bg-brand-100 transition-colors"
+              onClick={handleResetFilters}
+              className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md transition-all active:scale-95"
             >
-              Reset All Filters
+              Explore Popular Food
             </button>
           </div>
         ) : (
@@ -247,7 +321,7 @@ export default function MenuPage() {
               return (
                 <div
                   key={item.id}
-                  className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group"
+                  className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group"
                 >
                   <div>
                     <div className="h-44 w-full relative overflow-hidden bg-slate-100">
@@ -265,8 +339,8 @@ export default function MenuPage() {
                           {item.isVeg ? 'Veg' : 'Non-Veg'}
                         </span>
                         {!item.isAvailable && (
-                          <span className="px-2 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-bold">
-                            Unavailable
+                          <span className="px-2 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-bold shadow-sm">
+                            Sold Out
                           </span>
                         )}
                       </div>
@@ -346,7 +420,35 @@ export default function MenuPage() {
             })}
           </div>
         )}
+
+        {/* Sticky Bottom Cart Bar on Mobile when Cart has Items */}
+        {cartTotalItems > 0 && (
+          <div className="fixed bottom-4 left-4 right-4 z-40 sm:hidden">
+            <Link
+              href="/"
+              onClick={() => setActiveNavTab('cart')}
+              className="w-full py-3.5 px-5 rounded-2xl bg-slate-900 text-white shadow-elevated flex items-center justify-between border border-slate-800"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-xl bg-brand-600 flex items-center justify-center text-xs font-bold">
+                  🛒
+                </div>
+                <div>
+                  <span className="text-xs font-black block">
+                    {cartTotalItems} {cartTotalItems === 1 ? 'Item' : 'Items'} • ₹{cartTotalPrice}
+                  </span>
+                  <span className="text-[10px] text-slate-400">Tap to review & checkout</span>
+                </div>
+              </div>
+              <div className="px-3.5 py-1.5 rounded-xl bg-brand-600 text-white text-xs font-black flex items-center gap-1">
+                <span>View Plate</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </Link>
+          </div>
+        )}
       </div>
+
       <Footer />
     </div>
   );
