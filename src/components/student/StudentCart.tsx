@@ -291,22 +291,20 @@ export const StudentCart: React.FC = () => {
               <span>Room delivery request will be confirmed by the canteen.</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-left">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-left">
               <div>
                 <label className="block text-[10px] font-bold text-slate-600 mb-0.5">Hostel</label>
                 <input
                   type="text"
                   value={hostelDetails.hostelName}
-                  onChange={(e) => setHostelDetails({ ...hostelDetails, hostelName: e.target.value })}
-                  className="w-full px-2 py-1 text-xs rounded-lg border border-slate-300 bg-white"
-                />
-              </div>
-              <div>
-                <label className="block text-[10px] font-bold text-slate-600 mb-0.5">Block / Wing</label>
-                <input
-                  type="text"
-                  value={hostelDetails.block}
-                  onChange={(e) => setHostelDetails({ ...hostelDetails, block: e.target.value })}
+                  onChange={(e) =>
+                    setHostelDetails({
+                      ...hostelDetails,
+                      hostelName: e.target.value,
+                      block: e.target.value,
+                    })
+                  }
+                  placeholder="e.g. J-Block Boys Hostel"
                   className="w-full px-2 py-1 text-xs rounded-lg border border-slate-300 bg-white"
                 />
               </div>
@@ -316,6 +314,7 @@ export const StudentCart: React.FC = () => {
                   type="text"
                   value={hostelDetails.floor}
                   onChange={(e) => setHostelDetails({ ...hostelDetails, floor: e.target.value })}
+                  placeholder="e.g. 2nd Floor"
                   className="w-full px-2 py-1 text-xs rounded-lg border border-slate-300 bg-white"
                 />
               </div>
@@ -325,6 +324,7 @@ export const StudentCart: React.FC = () => {
                   type="text"
                   value={hostelDetails.roomNumber}
                   onChange={(e) => setHostelDetails({ ...hostelDetails, roomNumber: e.target.value })}
+                  placeholder="e.g. 204"
                   className="w-full px-2 py-1 text-xs rounded-lg border border-slate-300 bg-white font-bold"
                 />
               </div>

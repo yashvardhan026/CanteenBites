@@ -328,18 +328,7 @@ export const RoleSwitcherModal: React.FC<RoleSwitcherModalProps> = ({ isOpen, on
                       <option value="Girls Hostel I-Block">Girls Hostel I-Block</option>
                     </select>
                   </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    <div>
-                      <label className="block text-[11px] font-semibold text-slate-700 mb-1">Block</label>
-                      <input
-                        type="text"
-                        placeholder="Block B"
-                        value={formData.block}
-                        onChange={(e) => setFormData({ ...formData, block: e.target.value })}
-                        className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-300"
-                        required
-                      />
-                    </div>
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-[11px] font-semibold text-slate-700 mb-1">Floor</label>
                       <input

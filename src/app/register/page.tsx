@@ -264,32 +264,17 @@ export default function RegisterPage() {
                     <span>Hostel Room Delivery Information</span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Hostel Name</label>
-                      <select
-                        value={formData.hostelName}
-                        onChange={(e) => setFormData({ ...formData, hostelName: e.target.value })}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium bg-white outline-none"
-                      >
-                        <option value="J-Block Boys Hostel">J-Block Boys Hostel</option>
-                        <option value="D-Block Boys Hostel">D-Block Boys Hostel</option>
-                        <option value="Girls Hostel I-Block">Girls Hostel I-Block</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Block / Wing</label>
-                      <select
-                        value={formData.block}
-                        onChange={(e) => setFormData({ ...formData, block: e.target.value })}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium bg-white outline-none"
-                      >
-                        <option value="Block A">Block A</option>
-                        <option value="Block B">Block B</option>
-                        <option value="Block C">Block C</option>
-                      </select>
-                    </div>
+                  <div className="space-y-1">
+                    <label className="text-[11px] font-bold text-slate-700">Hostel Name</label>
+                    <select
+                      value={formData.hostelName}
+                      onChange={(e) => setFormData({ ...formData, hostelName: e.target.value, block: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium bg-white outline-none"
+                    >
+                      <option value="J-Block Boys Hostel">J-Block Boys Hostel</option>
+                      <option value="D-Block Boys Hostel">D-Block Boys Hostel</option>
+                      <option value="Girls Hostel I-Block">Girls Hostel I-Block</option>
+                    </select>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

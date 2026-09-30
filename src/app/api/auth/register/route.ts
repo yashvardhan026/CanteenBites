@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
     }
 
     if (studentType === 'HOSTELLER') {
-      if (!hostelName || !block || !roomNumber) {
+      if (!hostelName || !roomNumber) {
         return NextResponse.json(
-          { success: false, error: 'Hostellers must provide Hostel Name, Block, and Room Number.' },
+          { success: false, error: 'Hostellers must provide Hostel Name and Room Number.' },
           { status: 400 }
         );
       }
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
           ? {
               hostelId: hostelId || 'hostel-1',
               hostelName: hostelName,
-              block,
+              block: block || hostelName,
               floor: floor || '1st Floor',
               roomNumber,
             }

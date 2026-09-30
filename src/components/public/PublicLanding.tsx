@@ -735,7 +735,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
                     1
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-white block">Select Hostel & Block</span>
+                    <span className="text-xs font-bold text-white block">Select Your Hostel</span>
                     <span className="text-[11px] text-slate-400">J-Block, D-Block or Girls I-Block</span>
                   </div>
                 </div>

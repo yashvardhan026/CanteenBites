@@ -105,9 +105,9 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
-      if (!deliveryDetails?.hostelName || !deliveryDetails?.block || !deliveryDetails?.roomNumber) {
+      if (!deliveryDetails?.hostelName || !deliveryDetails?.roomNumber) {
         return NextResponse.json(
-          { success: false, error: 'Please specify your Hostel, Block, and Room Number for delivery.' },
+          { success: false, error: 'Please specify your Hostel and Room Number for delivery.' },
           { status: 400 }
         );
       }
@@ -217,7 +217,7 @@ export async function POST(req: NextRequest) {
       deliveryDetails: isDelivery
         ? {
             hostelName: deliveryDetails.hostelName,
-            block: deliveryDetails.block,
+            block: deliveryDetails.block || deliveryDetails.hostelName,
             floor: deliveryDetails.floor || '1st Floor',
             roomNumber: deliveryDetails.roomNumber,
             deliveryStatus: 'PENDING_CANTEEN_CONFIRMATION',
