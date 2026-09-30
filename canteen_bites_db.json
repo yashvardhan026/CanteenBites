@@ -686,6 +686,48 @@
       "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
       "id": "user-1790796657183-10",
       "createdAt": "2026-09-30T19:30:57.183Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1790796692871@sviet.ac.in",
+      "phone": "9773197975",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1790796692879-23",
+      "createdAt": "2026-09-30T19:31:32.879Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1790797969504@sviet.ac.in",
+      "phone": "9709221649",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1790797969512-489",
+      "createdAt": "2026-09-30T19:52:49.512Z"
     }
   ],
   "orders": [
@@ -1111,6 +1153,24 @@
     }
   ],
   "auditLogs": [
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-09-30T19:52:49.527Z",
+      "id": "audit-1790797969527",
+      "timestamp": "2026-09-30T19:52:49.527Z"
+    },
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-09-30T19:31:32.890Z",
+      "id": "audit-1790796692890",
+      "timestamp": "2026-09-30T19:31:32.890Z"
+    },
     {
       "userId": "user-admin",
       "userName": "Yash Vardhan",

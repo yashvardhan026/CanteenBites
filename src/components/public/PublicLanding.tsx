@@ -108,7 +108,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
       price: 70,
       prepTime: 8,
       rating: 4.8,
-      image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=600&q=80',
       badge: 'Trending 🔥',
       isVeg: true,
       category: 'FAST_FOOD' as const,
@@ -122,7 +122,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
       price: 80,
       prepTime: 12,
       rating: 4.7,
-      image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80',
       badge: 'Campus Favorite',
       isVeg: true,
       category: 'MEALS' as const,
@@ -136,7 +136,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
       price: 100,
       prepTime: 14,
       rating: 4.9,
-      image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1788602564560-9bcbf0f9acb6?auto=format&fit=crop&w=600&q=80',
       badge: 'Hostel Star',
       isVeg: true,
       category: 'MEALS' as const,
@@ -164,7 +164,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
       price: 150,
       prepTime: 15,
       rating: 4.8,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=600&q=80',
       badge: 'Party Pick 🍕',
       isVeg: true,
       category: 'PIZZA' as const,
@@ -306,7 +306,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
             <div className="relative w-full max-w-sm sm:max-w-md bg-white rounded-3xl p-4 shadow-elevated border border-slate-200/90 space-y-3 z-10 transition-all">
               <div className="relative h-52 sm:h-60 rounded-2xl overflow-hidden bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+                  src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=80"
                   alt="Crispy Paneer Burger"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -348,7 +348,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
                     price: 70,
                     prepTime: 8,
                     rating: 4.8,
-                    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+                    image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=600&q=80',
                     badge: 'Trending 🔥',
                     isVeg: true,
                     category: 'FAST_FOOD',
@@ -365,7 +365,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
             {/* Floating Micro-Card 1: Farmhouse Pizza (Top-Right) */}
             <div className="hidden sm:flex absolute -top-5 -right-4 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 shadow-lg border border-slate-200/90 items-center gap-2.5 z-20 animate-float-gentle">
               <img
-                src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=120&q=80"
+                src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=120&q=80"
                 alt="Pizza"
                 className="w-10 h-10 rounded-xl object-cover"
               />
@@ -403,7 +403,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
               style={{ animationDelay: '2.5s' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=120&q=80"
+                src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=120&q=80"
                 alt="Dosa"
                 className="w-10 h-10 rounded-xl object-cover"
               />
