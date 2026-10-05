@@ -94,7 +94,7 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
       price: 90,
       prepTime: 10,
       rating: 4.9,
-      image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80',
       badge: 'Best Seller',
       isVeg: true,
       category: 'FAST_FOOD' as const,

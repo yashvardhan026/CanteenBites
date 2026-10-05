@@ -107,7 +107,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 10,
       "category": "FAST_FOOD",
-      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=600&q=80",
       "rating": 4.7,
       "calories": 360,
       "isPopular": true,
@@ -124,7 +124,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 12,
       "category": "SNACKS",
-      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 410,
       "isPopular": true,
@@ -157,7 +157,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 15,
       "category": "MEALS",
-      "image": "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1788602564560-9bcbf0f9acb6?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 580,
       "isPopular": true
@@ -190,7 +190,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 4,
       "category": "TEA_COFFEE",
-      "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 80,
       "isPopular": true
@@ -206,7 +206,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 15,
       "category": "PIZZA",
-      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=600&q=80",
       "rating": 4.6,
       "calories": 520
     },
@@ -221,7 +221,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 7,
       "category": "FAST_FOOD",
-      "image": "https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1598679253544-2c97992403ea?auto=format&fit=crop&w=600&q=80",
       "rating": 4.7,
       "calories": 280
     },
@@ -236,7 +236,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 10,
       "category": "CHINESE",
-      "image": "https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80",
       "rating": 4.7,
       "calories": 390
     },
@@ -266,7 +266,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 10,
       "category": "SNACKS",
-      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=600&q=80",
       "rating": 4.9,
       "calories": 490,
       "isPopular": true,
@@ -300,7 +300,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 12,
       "category": "FAST_FOOD",
-      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1637710847214-f91d99669e18?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 480,
       "isPopular": true
@@ -316,7 +316,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 4,
       "category": "BEVERAGES",
-      "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1637572815755-c4b80092dce1?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 160
     },
@@ -331,7 +331,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 8,
       "category": "SNACKS",
-      "image": "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=600&q=80",
       "rating": 4.7,
       "calories": 420
     },
@@ -346,7 +346,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 15,
       "category": "CHINESE",
-      "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
       "rating": 4.6,
       "calories": 520
     },
@@ -361,7 +361,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 18,
       "category": "PIZZA",
-      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80",
       "rating": 4.7,
       "calories": 640,
       "isPopular": true
@@ -377,7 +377,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 16,
       "category": "MEALS",
-      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
+      "image": "https://images.unsplash.com/photo-1742281257687-092746ad6021?auto=format&fit=crop&w=600&q=80",
       "rating": 4.8,
       "calories": 690
     }
@@ -728,261 +728,51 @@
       "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
       "id": "user-1790797969512-489",
       "createdAt": "2026-09-30T19:52:49.512Z"
-    }
-  ],
-  "orders": [
+    },
     {
-      "userId": "user-student-hosteller",
-      "studentName": "Aarav Sharma",
-      "studentPhone": "+91 98765 43210",
-      "studentRoll": "22BCSE104",
-      "studentType": "HOSTELLER",
+      "name": "Test Student",
+      "email": "test_1790797999544@sviet.ac.in",
+      "phone": "9907848780",
+      "role": "STUDENT",
       "collegeId": "col-1",
-      "canteenId": "canteen-main",
-      "canteenName": "Main Campus Canteen",
-      "items": [
-        {
-          "menuItemId": "item-1",
-          "name": "Veg Crispy Burger",
-          "price": 70,
-          "quantity": 1,
-          "specialInstructions": "",
-          "isVeg": true,
-          "subtotal": 70
-        }
-      ],
-      "foodSubtotal": 70,
-      "platformFee": 5,
-      "deliveryCharge": 20,
-      "discount": 0,
-      "tax": 0,
-      "totalAmount": 95,
-      "orderType": "HOSTEL_DELIVERY",
-      "deliveryDetails": {
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
         "hostelName": "J-Block Boys Hostel",
         "block": "Block B",
         "floor": "2nd Floor",
-        "roomNumber": "204",
-        "deliveryStatus": "PENDING_CANTEEN_CONFIRMATION"
+        "roomNumber": "204"
       },
-      "paymentMethod": "UPI",
-      "paymentStatus": "COMPLETED",
-      "transactionId": "TXN-UPI-77528567",
-      "status": "CANCELLED",
-      "prepTimeMinutes": 24,
-      "estimatedReadyTime": "2026-09-30T14:36:08.567Z",
-      "id": "CB-20260930-92218",
-      "queuePosition": 0,
-      "createdAt": "2026-09-30T14:12:08.567Z",
-      "updatedAt": "2026-09-30T14:13:00.117Z",
-      "timeline": [
-        {
-          "status": "PENDING_ACCEPTANCE",
-          "timestamp": "2026-09-30T14:12:08.567Z",
-          "note": "Order placed by student"
-        },
-        {
-          "status": "CANCELLED",
-          "timestamp": "2026-09-30T14:13:00.117Z",
-          "note": "Cancelled: Student cancelled from app"
-        }
-      ],
-      "cancellationReason": "Student cancelled from app",
-      "refundAmount": 95,
-      "refundStatus": "INITIATED"
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1790797999559-94",
+      "createdAt": "2026-09-30T19:53:19.559Z"
     },
     {
-      "id": "CB-20260929-00101",
-      "userId": "user-student-hosteller",
-      "studentName": "Aarav Sharma",
-      "studentPhone": "+91 98765 43210",
-      "studentRoll": "22BCSE104",
-      "studentType": "HOSTELLER",
+      "name": "Test Student",
+      "email": "test_1791218386726@sviet.ac.in",
+      "phone": "9949590020",
+      "role": "STUDENT",
       "collegeId": "col-1",
-      "canteenId": "canteen-main",
-      "canteenName": "Main Campus Canteen",
-      "items": [
-        {
-          "menuItemId": "item-1",
-          "name": "Veg Crispy Burger",
-          "price": 70,
-          "quantity": 1,
-          "specialInstructions": "Extra crunchy, less mayo",
-          "isVeg": true,
-          "subtotal": 70
-        },
-        {
-          "menuItemId": "item-5",
-          "name": "Cold Coffee with Choco Drizzle",
-          "price": 60,
-          "quantity": 1,
-          "isVeg": true,
-          "subtotal": 60
-        }
-      ],
-      "foodSubtotal": 130,
-      "platformFee": 5,
-      "deliveryCharge": 0,
-      "discount": 0,
-      "tax": 0,
-      "totalAmount": 135,
-      "orderType": "CANTEEN_PICKUP",
-      "paymentMethod": "UPI",
-      "paymentStatus": "COMPLETED",
-      "transactionId": "TXN-UPI-99281928",
-      "status": "PREPARING",
-      "queuePosition": 1,
-      "prepTimeMinutes": 12,
-      "estimatedReadyTime": "2026-09-29T09:08:23.229Z",
-      "createdAt": "2026-09-29T08:50:23.235Z",
-      "updatedAt": "2026-09-29T08:56:23.235Z",
-      "timeline": [
-        {
-          "status": "PENDING_ACCEPTANCE",
-          "timestamp": "2026-09-29T08:50:23.235Z"
-        },
-        {
-          "status": "ACCEPTED",
-          "timestamp": "2026-09-29T08:52:23.235Z",
-          "note": "Estimated prep: 12 mins"
-        },
-        {
-          "status": "PREPARING",
-          "timestamp": "2026-09-29T08:56:23.235Z"
-        }
-      ]
-    },
-    {
-      "id": "CB-20260929-00102",
-      "userId": "user-student-hosteller",
-      "studentName": "Aarav Sharma",
-      "studentPhone": "+91 98765 43210",
-      "studentRoll": "22BCSE104",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
       "studentType": "HOSTELLER",
-      "collegeId": "col-1",
-      "canteenId": "canteen-main",
-      "canteenName": "Main Campus Canteen",
-      "items": [
-        {
-          "menuItemId": "item-2",
-          "name": "Paneer Tikka Kathi Roll",
-          "price": 90,
-          "quantity": 2,
-          "specialInstructions": "Less spicy, extra mint chutney",
-          "isVeg": true,
-          "subtotal": 180
-        },
-        {
-          "menuItemId": "item-6",
-          "name": "Adrak Masala Cutting Chai",
-          "price": 20,
-          "quantity": 2,
-          "isVeg": true,
-          "subtotal": 40
-        }
-      ],
-      "foodSubtotal": 220,
-      "platformFee": 5,
-      "deliveryCharge": 10,
-      "discount": 20,
-      "couponCode": "WELCOME20",
-      "tax": 0,
-      "totalAmount": 215,
-      "orderType": "HOSTEL_DELIVERY",
-      "deliveryDetails": {
+      "hostelDetails": {
+        "hostelId": "hostel-1",
         "hostelName": "J-Block Boys Hostel",
         "block": "Block B",
         "floor": "2nd Floor",
-        "roomNumber": "204",
-        "deliveryStatus": "ACCEPTED",
-        "deliveryStaffId": "user-delivery-staff",
-        "deliveryStaffName": "Suresh Yadav",
-        "deliveryStaffPhone": "+91 98222 33445"
+        "roomNumber": "204"
       },
-      "paymentMethod": "UPI",
-      "paymentStatus": "COMPLETED",
-      "transactionId": "TXN-UPI-88471920",
-      "status": "READY",
-      "queuePosition": 0,
-      "prepTimeMinutes": 15,
-      "estimatedReadyTime": "2026-09-29T08:58:23.235Z",
-      "createdAt": "2026-09-29T08:35:23.235Z",
-      "updatedAt": "2026-09-29T08:58:23.235Z",
-      "timeline": [
-        {
-          "status": "PENDING_ACCEPTANCE",
-          "timestamp": "2026-09-29T08:35:23.235Z"
-        },
-        {
-          "status": "ACCEPTED",
-          "timestamp": "2026-09-29T08:38:23.235Z"
-        },
-        {
-          "status": "PREPARING",
-          "timestamp": "2026-09-29T08:42:23.235Z"
-        },
-        {
-          "status": "READY",
-          "timestamp": "2026-09-29T08:58:23.235Z",
-          "note": "Ready for delivery pickup"
-        }
-      ]
-    },
-    {
-      "id": "CB-20260929-00103",
-      "userId": "user-student-dayscholar",
-      "studentName": "Priya Patel",
-      "studentPhone": "+91 98765 12345",
-      "studentRoll": "22BEC042",
-      "studentType": "DAY_SCHOLAR",
-      "collegeId": "col-1",
-      "canteenId": "canteen-main",
-      "canteenName": "Main Campus Canteen",
-      "items": [
-        {
-          "menuItemId": "item-3",
-          "name": "Special Masala Dosa",
-          "price": 80,
-          "quantity": 1,
-          "specialInstructions": "Crispy roast, hot sambar",
-          "isVeg": true,
-          "subtotal": 80
-        }
-      ],
-      "foodSubtotal": 80,
-      "platformFee": 5,
-      "deliveryCharge": 0,
-      "discount": 0,
-      "tax": 0,
-      "totalAmount": 85,
-      "orderType": "CANTEEN_PICKUP",
-      "paymentMethod": "CARD",
-      "paymentStatus": "COMPLETED",
-      "transactionId": "TXN-CARD-44910283",
-      "status": "PREPARING",
-      "queuePosition": 2,
-      "prepTimeMinutes": 15,
-      "estimatedReadyTime": "2026-09-30T09:52:37.964Z",
-      "createdAt": "2026-09-29T08:58:23.235Z",
-      "updatedAt": "2026-09-30T09:37:48.983Z",
-      "timeline": [
-        {
-          "status": "PENDING_ACCEPTANCE",
-          "timestamp": "2026-09-29T08:58:23.235Z"
-        },
-        {
-          "status": "ACCEPTED",
-          "timestamp": "2026-09-30T09:37:37.968Z",
-          "note": "Accepted. Prep time: 15 mins"
-        },
-        {
-          "status": "PREPARING",
-          "timestamp": "2026-09-30T09:37:48.983Z",
-          "note": "Kitchen started cooking"
-        }
-      ]
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1791218386732-115",
+      "createdAt": "2026-10-05T16:39:46.732Z"
     }
   ],
+  "orders": [],
   "coupons": [
     {
       "code": "WELCOME20",
@@ -1153,6 +943,24 @@
     }
   ],
   "auditLogs": [
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-05T16:39:46.744Z",
+      "id": "audit-1791218386744",
+      "timestamp": "2026-10-05T16:39:46.744Z"
+    },
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-09-30T19:53:19.572Z",
+      "id": "audit-1790797999572",
+      "timestamp": "2026-09-30T19:53:19.572Z"
+    },
     {
       "userId": "user-admin",
       "userName": "Yash Vardhan",
