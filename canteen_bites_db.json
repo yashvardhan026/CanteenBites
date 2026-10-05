@@ -124,7 +124,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 12,
       "category": "SNACKS",
-      "image": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80",
+      "image": "/images/paneer-butter-roll.jpg",
       "rating": 4.8,
       "calories": 410,
       "isPopular": true,
@@ -770,6 +770,27 @@
       "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
       "id": "user-1791218386732-115",
       "createdAt": "2026-10-05T16:39:46.732Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1791218948194@sviet.ac.in",
+      "phone": "9617318156",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1791218948200-338",
+      "createdAt": "2026-10-05T16:49:08.200Z"
     }
   ],
   "orders": [],
@@ -943,6 +964,15 @@
     }
   ],
   "auditLogs": [
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-05T16:49:08.212Z",
+      "id": "audit-1791218948213",
+      "timestamp": "2026-10-05T16:49:08.213Z"
+    },
     {
       "userId": "user-admin",
       "userName": "Yash Vardhan",

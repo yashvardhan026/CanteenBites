@@ -127,7 +127,7 @@ export const SEED_MENU_ITEMS: MenuItem[] = [
     isAvailable: true,
     prepTimeMinutes: 12,
     category: 'SNACKS',
-    image: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/paneer-butter-roll.jpg',
     rating: 4.8,
     calories: 410,
     isPopular: true,
