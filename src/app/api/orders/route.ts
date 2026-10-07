@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
       orderType, // 'CANTEEN_PICKUP' | 'HOSTEL_DELIVERY'
       deliveryDetails,
       paymentMethod,
+      transactionId,
       couponCode,
       idempotencyKey,
     } = body;
@@ -224,8 +225,8 @@ export async function POST(req: NextRequest) {
           }
         : undefined,
       paymentMethod: paymentMethod || 'UPI',
-      paymentStatus: 'COMPLETED', // Demo gateway completed
-      transactionId: `TXN-${paymentMethod || 'UPI'}-${Date.now().toString().slice(-8)}`,
+      paymentStatus: paymentMethod && paymentMethod.startsWith('CASH') ? 'PENDING' : 'COMPLETED',
+      transactionId: transactionId || `TXN-${paymentMethod || 'UPI'}-${Date.now().toString().slice(-8)}`,
       status: 'PENDING_ACCEPTANCE',
       prepTimeMinutes: smartEta.minutesRemaining,
       estimatedReadyTime: smartEta.readyTimestamp,

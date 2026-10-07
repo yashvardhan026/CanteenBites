@@ -482,6 +482,14 @@ export const CanteenDashboard: React.FC = () => {
                         {order.studentName} ({order.studentRoll})
                       </h4>
                       <span className="text-[10px] text-slate-400">📞 {order.studentPhone}</span>
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                          {order.paymentMethod?.startsWith('CASH') ? '💵 Cash' : '📱 Online'} ({order.paymentMethod?.replace(/_/g, ' ') || 'UPI'})
+                        </span>
+                        <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${order.paymentStatus === 'PENDING' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-emerald-100 text-emerald-800'}`}>
+                          {order.paymentStatus === 'PENDING' ? 'Collect Cash' : '✓ Paid'}
+                        </span>
+                      </div>
                     </div>
                     <div className="text-right">
                       <span className="font-black text-base text-slate-900">

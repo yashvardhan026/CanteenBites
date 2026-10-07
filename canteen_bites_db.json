@@ -791,9 +791,170 @@
       "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
       "id": "user-1791218948200-338",
       "createdAt": "2026-10-05T16:49:08.200Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1791219102991@sviet.ac.in",
+      "phone": "9849822816",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1791219102996-808",
+      "createdAt": "2026-10-05T16:51:42.996Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1791384183353@sviet.ac.in",
+      "phone": "9170922984",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1791384183360-826",
+      "createdAt": "2026-10-07T14:43:03.360Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1791384214610@sviet.ac.in",
+      "phone": "9225104851",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1791384214615-534",
+      "createdAt": "2026-10-07T14:43:34.615Z"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "userId": "user-student-hosteller",
+      "studentName": "Aarav Sharma",
+      "studentPhone": "9876543210",
+      "studentRoll": "21CS042",
+      "studentType": "HOSTELLER",
+      "collegeId": "sviet-campus",
+      "canteenId": "canteen-main",
+      "canteenName": "Main Campus Canteen",
+      "items": [
+        {
+          "menuItemId": "item-1",
+          "name": "Veg Crispy Burger",
+          "price": 70,
+          "quantity": 1,
+          "specialInstructions": "",
+          "isVeg": true,
+          "subtotal": 70
+        }
+      ],
+      "foodSubtotal": 70,
+      "platformFee": 5,
+      "deliveryCharge": 20,
+      "discount": 0,
+      "tax": 0,
+      "totalAmount": 95,
+      "orderType": "HOSTEL_DELIVERY",
+      "deliveryDetails": {
+        "hostelName": "H1 Boys Hostel",
+        "block": "Block A",
+        "floor": "2nd Floor",
+        "roomNumber": "204",
+        "deliveryStatus": "PENDING_CANTEEN_CONFIRMATION"
+      },
+      "paymentMethod": "CASH_ON_DELIVERY",
+      "paymentStatus": "PENDING",
+      "transactionId": "TXN-CASH_ON_DELIVERY-84214655",
+      "status": "PENDING_ACCEPTANCE",
+      "prepTimeMinutes": 18,
+      "estimatedReadyTime": "2026-10-07T15:01:34.655Z",
+      "id": "CB-20261007-41878",
+      "queuePosition": 2,
+      "createdAt": "2026-10-07T14:43:34.655Z",
+      "updatedAt": "2026-10-07T14:43:34.655Z",
+      "timeline": [
+        {
+          "status": "PENDING_ACCEPTANCE",
+          "timestamp": "2026-10-07T14:43:34.655Z",
+          "note": "Order placed by student"
+        }
+      ]
+    },
+    {
+      "userId": "user-student-hosteller",
+      "studentName": "Aarav Sharma",
+      "studentPhone": "9876543210",
+      "studentRoll": "21CS042",
+      "studentType": "HOSTELLER",
+      "collegeId": "sviet-campus",
+      "canteenId": "canteen-main",
+      "canteenName": "Main Campus Canteen",
+      "items": [
+        {
+          "menuItemId": "item-1",
+          "name": "Veg Crispy Burger",
+          "price": 70,
+          "quantity": 1,
+          "specialInstructions": "",
+          "isVeg": true,
+          "subtotal": 70
+        }
+      ],
+      "foodSubtotal": 70,
+      "platformFee": 5,
+      "deliveryCharge": 0,
+      "discount": 0,
+      "tax": 0,
+      "totalAmount": 75,
+      "orderType": "CANTEEN_PICKUP",
+      "paymentMethod": "UPI_PAYTM",
+      "paymentStatus": "COMPLETED",
+      "transactionId": "TXN_PAYTM_1791384214634",
+      "status": "PENDING_ACCEPTANCE",
+      "prepTimeMinutes": 12,
+      "estimatedReadyTime": "2026-10-07T14:55:34.639Z",
+      "id": "CB-20261007-57272",
+      "queuePosition": 1,
+      "createdAt": "2026-10-07T14:43:34.639Z",
+      "updatedAt": "2026-10-07T14:43:34.639Z",
+      "timeline": [
+        {
+          "status": "PENDING_ACCEPTANCE",
+          "timestamp": "2026-10-07T14:43:34.639Z",
+          "note": "Order placed by student"
+        }
+      ]
+    }
+  ],
   "coupons": [
     {
       "code": "WELCOME20",
@@ -874,6 +1035,50 @@
     "autoRefundOnReject": true
   },
   "notifications": [
+    {
+      "userId": "user-canteen-staff",
+      "role": "CANTEEN_STAFF",
+      "orderId": "CB-20261007-41878",
+      "title": "New Order Received 🔔",
+      "message": "Aarav Sharma placed order CB-20261007-41878 (1 items, ₹95).",
+      "type": "ORDER",
+      "id": "notif-1791384214656-931",
+      "isRead": false,
+      "createdAt": "2026-10-07T14:43:34.656Z"
+    },
+    {
+      "userId": "user-student-hosteller",
+      "role": "STUDENT",
+      "orderId": "CB-20261007-41878",
+      "title": "Order Placed Successfully 🎉",
+      "message": "Your order CB-20261007-41878 for ₹95 has been sent to Main Campus Canteen.",
+      "type": "ORDER",
+      "id": "notif-1791384214656-914",
+      "isRead": false,
+      "createdAt": "2026-10-07T14:43:34.656Z"
+    },
+    {
+      "userId": "user-canteen-staff",
+      "role": "CANTEEN_STAFF",
+      "orderId": "CB-20261007-57272",
+      "title": "New Order Received 🔔",
+      "message": "Aarav Sharma placed order CB-20261007-57272 (1 items, ₹75).",
+      "type": "ORDER",
+      "id": "notif-1791384214641-780",
+      "isRead": false,
+      "createdAt": "2026-10-07T14:43:34.641Z"
+    },
+    {
+      "userId": "user-student-hosteller",
+      "role": "STUDENT",
+      "orderId": "CB-20261007-57272",
+      "title": "Order Placed Successfully 🎉",
+      "message": "Your order CB-20261007-57272 for ₹75 has been sent to Main Campus Canteen.",
+      "type": "ORDER",
+      "id": "notif-1791384214640-91",
+      "isRead": false,
+      "createdAt": "2026-10-07T14:43:34.640Z"
+    },
     {
       "userId": "user-student-hosteller",
       "role": "STUDENT",
@@ -964,6 +1169,33 @@
     }
   ],
   "auditLogs": [
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-07T14:43:34.624Z",
+      "id": "audit-1791384214624",
+      "timestamp": "2026-10-07T14:43:34.624Z"
+    },
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-07T14:43:03.371Z",
+      "id": "audit-1791384183371",
+      "timestamp": "2026-10-07T14:43:03.371Z"
+    },
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-05T16:51:43.003Z",
+      "id": "audit-1791219103003",
+      "timestamp": "2026-10-05T16:51:43.003Z"
+    },
     {
       "userId": "user-admin",
       "userName": "Yash Vardhan",

@@ -170,6 +170,106 @@ async function runTests() {
     }
   });
 
+  // 11. Payment Option: Paytm UPI Order Checkout
+  await test('Payment Options: Place Order with Paytm UPI (UPI_PAYTM) marks paymentStatus COMPLETED', async () => {
+    const menuRes = await fetch(`${BASE_URL}/api/menu`);
+    const menuData = await menuRes.json();
+    const testItem = menuData.items.find((i) => i.isAvailable) || menuData.items[0];
+
+    const orderRes = await fetch(`${BASE_URL}/api/orders`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: 'user-student-hosteller',
+        studentName: 'Aarav Sharma',
+        studentPhone: '9876543210',
+        studentRoll: '21CS042',
+        studentType: 'HOSTELLER',
+        collegeId: 'sviet-campus',
+        canteenId: testItem.canteenId,
+        idempotencyKey: `test_paytm_${Date.now()}`,
+        items: [
+          {
+            menuItem: testItem,
+            quantity: 1,
+            specialInstructions: '',
+          },
+        ],
+        orderType: 'CANTEEN_PICKUP',
+        paymentMethod: 'UPI_PAYTM',
+        transactionId: `TXN_PAYTM_${Date.now()}`,
+      }),
+    });
+
+    if (!orderRes.ok) {
+      const errJson = await orderRes.json().catch(() => ({}));
+      throw new Error(`Failed with status ${orderRes.status}: ${JSON.stringify(errJson)}`);
+    }
+    const orderData = await orderRes.json();
+    if (!orderData.success || !orderData.order) {
+      throw new Error(`Order placement failed: ${JSON.stringify(orderData)}`);
+    }
+    if (orderData.order.paymentMethod !== 'UPI_PAYTM') {
+      throw new Error(`Expected UPI_PAYTM paymentMethod, got ${orderData.order.paymentMethod}`);
+    }
+    if (orderData.order.paymentStatus !== 'COMPLETED') {
+      throw new Error(`Expected COMPLETED paymentStatus for Paytm UPI, got ${orderData.order.paymentStatus}`);
+    }
+  });
+
+  // 12. Payment Option: Cash on Delivery (COD) Order Checkout
+  await test('Payment Options: Place Order with Cash on Delivery marks paymentStatus PENDING', async () => {
+    const menuRes = await fetch(`${BASE_URL}/api/menu`);
+    const menuData = await menuRes.json();
+    const testItem = menuData.items.find((i) => i.isAvailable) || menuData.items[0];
+
+    const orderRes = await fetch(`${BASE_URL}/api/orders`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: 'user-student-hosteller',
+        studentName: 'Aarav Sharma',
+        studentPhone: '9876543210',
+        studentRoll: '21CS042',
+        studentType: 'HOSTELLER',
+        collegeId: 'sviet-campus',
+        canteenId: testItem.canteenId,
+        idempotencyKey: `test_cod_${Date.now()}`,
+        items: [
+          {
+            menuItem: testItem,
+            quantity: 1,
+            specialInstructions: '',
+          },
+        ],
+        orderType: 'HOSTEL_DELIVERY',
+        deliveryDetails: {
+          hostelName: 'H1 Boys Hostel',
+          block: 'Block A',
+          floor: '2nd Floor',
+          roomNumber: '204',
+          deliveryStatus: 'PENDING_CANTEEN_CONFIRMATION',
+        },
+        paymentMethod: 'CASH_ON_DELIVERY',
+      }),
+    });
+
+    if (!orderRes.ok) {
+      const errJson = await orderRes.json().catch(() => ({}));
+      throw new Error(`Failed with status ${orderRes.status}: ${JSON.stringify(errJson)}`);
+    }
+    const orderData = await orderRes.json();
+    if (!orderData.success || !orderData.order) {
+      throw new Error(`Order placement failed: ${JSON.stringify(orderData)}`);
+    }
+    if (orderData.order.paymentMethod !== 'CASH_ON_DELIVERY') {
+      throw new Error(`Expected CASH_ON_DELIVERY paymentMethod, got ${orderData.order.paymentMethod}`);
+    }
+    if (orderData.order.paymentStatus !== 'PENDING') {
+      throw new Error(`Expected PENDING paymentStatus for Cash on Delivery, got ${orderData.order.paymentStatus}`);
+    }
+  });
+
   console.log(`\n🏁 Test Suite Summary: ${passed} Passed, ${failed} Failed.`);
   if (failed > 0) process.exit(1);
 }

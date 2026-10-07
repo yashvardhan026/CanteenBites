@@ -126,7 +126,18 @@ export type DeliveryStatus =
   | 'OUT_FOR_DELIVERY'
   | 'DELIVERED';
 
-export type PaymentMethod = 'UPI' | 'CARD' | 'NET_BANKING' | 'WALLET' | 'CASH_ON_PICKUP';
+export type PaymentMethod =
+  | 'UPI'
+  | 'UPI_PAYTM'
+  | 'UPI_GPAY'
+  | 'UPI_PHONEPE'
+  | 'CARD'
+  | 'NET_BANKING'
+  | 'WALLET'
+  | 'CAMPUS_WALLET'
+  | 'CASH'
+  | 'CASH_ON_PICKUP'
+  | 'CASH_ON_DELIVERY';
 
 export type PaymentStatus = 'PENDING' | 'COMPLETED' | 'FAILED' | 'REFUNDED';
 

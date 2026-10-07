@@ -212,6 +212,36 @@ export const DeliveryDashboard: React.FC = () => {
                   ))}
                 </div>
 
+                {/* Payment Collection Indicator */}
+                <div className={`p-3 rounded-2xl flex items-center justify-between text-xs ${
+                  order.paymentMethod?.startsWith('CASH') || order.paymentStatus === 'PENDING'
+                    ? 'bg-amber-50 border border-amber-200 text-amber-900'
+                    : 'bg-emerald-50 border border-emerald-200 text-emerald-900'
+                }`}>
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">{order.paymentMethod?.startsWith('CASH') ? '💵' : '💳'}</span>
+                    <div>
+                      <span className="font-bold block">
+                        {order.paymentMethod?.startsWith('CASH') || order.paymentStatus === 'PENDING'
+                          ? `Cash on Delivery: Collect ₹${order.totalAmount}`
+                          : `Paid Online (${order.paymentMethod?.replace(/_/g, ' ') || 'UPI'})`}
+                      </span>
+                      <span className="text-[10px] opacity-80 block">
+                        {order.paymentMethod?.startsWith('CASH')
+                          ? 'Collect exact cash before handing over food package'
+                          : 'Payment verified & settled. No cash collection needed.'}
+                      </span>
+                    </div>
+                  </div>
+                  <span className={`text-[10px] font-black px-2.5 py-0.5 rounded-full ${
+                    order.paymentMethod?.startsWith('CASH') || order.paymentStatus === 'PENDING'
+                      ? 'bg-amber-200 text-amber-900'
+                      : 'bg-emerald-200 text-emerald-900'
+                  }`}>
+                    {order.paymentMethod?.startsWith('CASH') || order.paymentStatus === 'PENDING' ? 'CASH DUE' : 'PAID'}
+                  </span>
+                </div>
+
                 {/* Delivery Action Buttons */}
                 <div className="flex gap-2 pt-2 border-t border-slate-100">
                   {order.status === 'READY' && (

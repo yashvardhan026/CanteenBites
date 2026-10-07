@@ -71,7 +71,10 @@ interface AppContextType {
   refreshSettings: () => Promise<void>;
   refreshOrders: () => Promise<void>;
   refreshCanteens: () => Promise<void>;
-  placeOrder: (paymentMethod: PaymentMethod) => Promise<{ success: boolean; order?: Order; error?: string }>;
+  placeOrder: (
+    paymentMethod: PaymentMethod,
+    transactionId?: string
+  ) => Promise<{ success: boolean; order?: Order; error?: string }>;
   toasts: Toast[];
   showToast: (title: string, message: string, type?: Toast['type']) => void;
   removeToast: (id: string) => void;
@@ -440,7 +443,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Place order
   const placeOrder = useCallback(
-    async (paymentMethod: PaymentMethod) => {
+    async (paymentMethod: PaymentMethod, transactionId?: string) => {
       if (!user) {
         return { success: false, error: 'Please log in to place an order.' };
       }
@@ -472,6 +475,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                 }
               : undefined,
           paymentMethod,
+          transactionId,
           couponCode: appliedCoupon?.code,
           idempotencyKey: `${user.id}-${Date.now()}`,
         };

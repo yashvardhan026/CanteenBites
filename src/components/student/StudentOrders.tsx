@@ -20,6 +20,80 @@ import {
   X,
 } from 'lucide-react';
 
+const getPaymentMethodDisplay = (method?: string) => {
+  let label = 'Online Payment';
+  let badgeClass = 'bg-sky-50 text-sky-700 border-sky-200';
+  let iconText = '📱';
+
+  if (!method) {
+    return { label, badgeClass, iconText };
+  }
+
+  switch (method) {
+    case 'UPI_PAYTM':
+      label = 'Paytm UPI';
+      badgeClass = 'bg-sky-50 text-sky-700 border-sky-200';
+      iconText = '💙';
+      break;
+    case 'UPI_GPAY':
+      label = 'Google Pay';
+      badgeClass = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+      iconText = '🟢';
+      break;
+    case 'UPI_PHONEPE':
+      label = 'PhonePe';
+      badgeClass = 'bg-purple-50 text-purple-700 border-purple-200';
+      iconText = '🟣';
+      break;
+    case 'UPI':
+      label = 'Paytm / UPI';
+      badgeClass = 'bg-sky-50 text-sky-700 border-sky-200';
+      iconText = '📱';
+      break;
+    case 'CASH':
+      label = 'Cash at Counter';
+      badgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+      iconText = '💵';
+      break;
+    case 'CASH_ON_DELIVERY':
+      label = 'Cash on Delivery (COD)';
+      badgeClass = 'bg-amber-50 text-amber-800 border-amber-200';
+      iconText = '💵';
+      break;
+    case 'CASH_ON_PICKUP':
+      label = 'Cash at Counter';
+      badgeClass = 'bg-emerald-50 text-emerald-800 border-emerald-200';
+      iconText = '💵';
+      break;
+    case 'CAMPUS_WALLET':
+      label = 'SVIET Food Card';
+      badgeClass = 'bg-amber-50 text-amber-800 border-amber-200';
+      iconText = '🎓';
+      break;
+    case 'CARD':
+      label = 'Debit / Credit Card';
+      badgeClass = 'bg-indigo-50 text-indigo-700 border-indigo-200';
+      iconText = '💳';
+      break;
+    case 'NET_BANKING':
+      label = 'Net Banking';
+      badgeClass = 'bg-blue-50 text-blue-700 border-blue-200';
+      iconText = '🏦';
+      break;
+    case 'WALLET':
+      label = 'Paytm Wallet';
+      badgeClass = 'bg-cyan-50 text-cyan-700 border-cyan-200';
+      iconText = '👛';
+      break;
+    default:
+      label = method.replace(/_/g, ' ');
+      badgeClass = 'bg-slate-50 text-slate-700 border-slate-200';
+      iconText = '💳';
+  }
+
+  return { label, badgeClass, iconText };
+};
+
 export const StudentOrders: React.FC = () => {
   const {
     orders,
@@ -224,6 +298,40 @@ export const StudentOrders: React.FC = () => {
               </span>
             </div>
           </div>
+
+          {/* Payment Method Badge & Settlement Status */}
+          {(() => {
+            const payInfo = getPaymentMethodDisplay(currentViewOrder.paymentMethod);
+            const isCash = currentViewOrder.paymentMethod?.startsWith('CASH');
+            const isPaid = currentViewOrder.paymentStatus === 'COMPLETED';
+            return (
+              <div className="flex flex-wrap items-center justify-between gap-2 px-3.5 py-2 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">{payInfo.iconText}</span>
+                  <span className="text-[11px] text-slate-500 font-medium">Payment Mode:</span>
+                  <span className={`text-[11px] font-extrabold px-2.5 py-0.5 rounded-full border shadow-2xs ${payInfo.badgeClass}`}>
+                    {payInfo.label}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`text-[10px] font-black px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs ${
+                      isPaid
+                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                        : 'bg-amber-100 text-amber-900 border border-amber-300'
+                    }`}
+                  >
+                    {isPaid ? '✓ Paid Online' : isCash ? '💵 Cash Due on Delivery' : '⏳ Payment Pending'}
+                  </span>
+                  {currentViewOrder.transactionId && (
+                    <span className="text-[9px] font-mono text-slate-400 hidden sm:inline" title={currentViewOrder.transactionId}>
+                      Ref: {currentViewOrder.transactionId.slice(-8)}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Visual Timeline (Section 18 & 35) */}
           {!isTerminated ? (
@@ -502,8 +610,17 @@ export const StudentOrders: React.FC = () => {
                       <span>{ORDER_STATUS_DETAILS[o.status]?.label || o.status}</span>
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600 mt-1">
-                    {o.canteenName} • {o.items.length} item(s) • ₹{o.totalAmount}
+                  <p className="text-xs text-slate-600 mt-1 flex flex-wrap items-center gap-1.5">
+                    <span>{o.canteenName}</span>
+                    <span>•</span>
+                    <span>{o.items.length} item(s)</span>
+                    <span>•</span>
+                    <span className="font-bold text-slate-900">₹{o.totalAmount}</span>
+                    <span>•</span>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700">
+                      <span>{getPaymentMethodDisplay(o.paymentMethod).iconText}</span>
+                      <span>{getPaymentMethodDisplay(o.paymentMethod).label}</span>
+                    </span>
                   </p>
                   <span className="text-[10px] text-slate-400 block mt-0.5">
                     {new Date(o.createdAt).toLocaleDateString([], {
