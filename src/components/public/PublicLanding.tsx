@@ -28,6 +28,8 @@ import {
   GraduationCap,
   ShoppingBag,
   ExternalLink,
+  HelpCircle,
+  ChevronDown,
 } from 'lucide-react';
 import { INITIAL_COUPONS } from '@/lib/constants';
 
@@ -242,16 +244,16 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              Skip the Queue.{' '}
+              Your Campus Cravings,{' '}
               <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                Enjoy Your Food.
+              <span className="bg-gradient-to-r from-amber-500 via-brand-600 to-indigo-600 bg-clip-text text-transparent">
+                Without the Queue.
               </span>
             </h1>
 
             {/* Supporting Text */}
             <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-normal">
-              Order from your campus canteen, track your food live, and get it delivered straight to your hostel.
+              Explore your college canteen menu, order your favourites, track preparation, and spend less time waiting.
             </p>
 
             {/* Action Buttons */}
@@ -1057,65 +1059,70 @@ export const PublicLanding: React.FC<PublicLandingProps> = ({ onEnterApp }) => {
         </div>
       </section>
 
-      {/* 9. CAMPUS TESTIMONIALS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      {/* 9. FREQUENTLY ASKED QUESTIONS (FAQS) */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">
-            <HeartHandshake className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Loved by Campus Students</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">
+            <HelpCircle className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Got Questions?</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            What SVIET Students Say
+            Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-slate-500">
-            Real feedback from hostellers, day scholars, and college canteen managers.
+            Essential information about ordering, payment, kitchen queues, and hostel delivery.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-card space-y-3">
-            <div className="flex items-center gap-1 text-amber-400">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400" />
-              ))}
-            </div>
-            <p className="text-xs text-slate-600 leading-relaxed italic">
-              &quot;Between lectures, we only have a 15-minute recess. With CanteenBites, I order right at the end of class and walk in to pick up my hot Paneer Roll immediately without standing in that chaotic 50-person crowd!&quot;
+        <div className="space-y-4">
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card">
+            <h3 className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-600" />
+              Who can use CanteenBites on campus?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 pl-4 leading-relaxed">
+              All SVIET students (both Hostellers and Day Scholars), faculty members, and campus staff can use CanteenBites to browse live menus, track food preparation queues, and order without waiting in physical counter lines.
             </p>
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-900">Aarav Sharma</span>
-              <span className="text-slate-400">CSE, 3rd Year • J-Block Boys Hostel</span>
-            </div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-card space-y-3">
-            <div className="flex items-center gap-1 text-amber-400">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400" />
-              ))}
-            </div>
-            <p className="text-xs text-slate-600 leading-relaxed italic">
-              &quot;Late night study sessions before midterms were painful before room delivery. Now we order pizzas and cold coffee from the hostel canteen, and the delivery staff brings it right to our floor. Absolute lifesaver.&quot;
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card">
+            <h3 className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-600" />
+              How does hostel room delivery work?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 pl-4 leading-relaxed">
+              Verified Hostellers residing in J-Block, D-Block, or Girls Hostel I-block can select &quot;Hostel Room Delivery&quot; at checkout. Once your food is prepared, a delivery partner brings it to your hostel floor and will call your registered phone number.
             </p>
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-900">Priya Patel</span>
-              <span className="text-slate-400">ECE, 2nd Year • Girls Hostel I-block</span>
-            </div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-card space-y-3">
-            <div className="flex items-center gap-1 text-amber-400">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-amber-400" />
-              ))}
-            </div>
-            <p className="text-xs text-slate-600 leading-relaxed italic">
-              &quot;As canteen kitchen managers, our counter panic has completely vanished. The live queue screen organizes orders systematically, students arrive on time when their food is marked ready, and our daily revenue grew 35%.&quot;
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card">
+            <h3 className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-600" />
+              Can Day Scholars request hostel room delivery?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 pl-4 leading-relaxed">
+              No, room delivery is strictly reserved for verified hostellers with assigned hostel rooms. Day Scholars can choose &quot;Canteen Pickup&quot; to collect their freshly prepared meal directly from the express counter.
             </p>
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-900">Ramesh Kumar</span>
-              <span className="text-slate-400">Manager • Main College Canteen</span>
-            </div>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card">
+            <h3 className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-600" />
+              What payment options are supported?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 pl-4 leading-relaxed">
+              We support fast online payments via Paytm UPI, Google Pay, PhonePe, and BHIM UPI with instant transaction status, as well as Cash on Counter when collecting your food.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-card">
+            <h3 className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-600" />
+              What happens if a canteen cannot fulfill hostel room delivery?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2 pl-4 leading-relaxed">
+              If canteen staff reject the room delivery portion due to high kitchen rush or bad weather, the order automatically switches to express counter pickup, and the ₹15 delivery fee is immediately refunded to your account.
+            </p>
           </div>
         </div>
       </section>

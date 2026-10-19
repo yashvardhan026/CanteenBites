@@ -9,88 +9,51 @@
 }
 
 body {
-  color: #f1f5f9;
-  background-color: #05060f;
+  color: #F8FAFC;
+  background-color: #0B1220;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom dark scrollbars */
+/* Custom dark-navy scrollbars */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #05060f;
+  background: #0B1220;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.4);
+  background: #FFB454;
 }
 
-/* Pure CSS Aurora Animation for Hero */
-@keyframes aurora-blob-1 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(60px, -40px) scale(1.15);
-  }
-  66% {
-    transform: translate(-40px, 30px) scale(0.95);
-  }
-}
-
-@keyframes aurora-blob-2 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(-70px, 40px) scale(1.2);
-  }
-  66% {
-    transform: translate(50px, -30px) scale(0.9);
-  }
-}
-
-@keyframes aurora-blob-3 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(40px, 50px) scale(1.12);
-  }
-}
-
-.animate-aurora-blob-1 {
-  animation: aurora-blob-1 18s ease-in-out infinite;
-}
-
-.animate-aurora-blob-2 {
-  animation: aurora-blob-2 22s ease-in-out infinite;
-}
-
-.animate-aurora-blob-3 {
-  animation: aurora-blob-3 26s ease-in-out infinite;
-}
-
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .animate-aurora-blob-1,
-  .animate-aurora-blob-2,
-  .animate-aurora-blob-3 {
-    animation: none !important;
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Glassy card utility */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* Glassy navy card utility */
+.navy-card {
+  background: #151F32;
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.navy-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.navy-card-hover:hover {
+  border-color: rgba(255, 180, 84, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(11, 18, 32, 0.8), 0 0 15px rgba(255, 180, 84, 0.1);
 }
 
 /* Veg / Non-Veg Indicator styling */

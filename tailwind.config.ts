@@ -22,10 +22,22 @@ const config: Config = {
           900: "#312E81",
           950: "#1E1B4B",
         },
+        navy: {
+          950: "#070C15",
+          900: "#0B1220",
+          800: "#151F32",
+          700: "#1E2B45",
+          600: "#2A3B5C",
+        },
+        canteenAmber: {
+          400: "#FFB454",
+          500: "#F59E0B",
+          600: "#D97706",
+        },
         food: {
           veg: "#16A34A",
           nonveg: "#DC2626",
-          accent: "#F97316",
+          accent: "#FFB454",
         }
       },
       fontFamily: {

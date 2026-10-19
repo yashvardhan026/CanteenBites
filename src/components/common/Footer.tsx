@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                <span>PCI-DSS & Campus Certified Secure Payment Processing</span>
+                <span>Verified Campus Ordering with UPI & Cash on Counter</span>
               </div>
             </div>
           </div>

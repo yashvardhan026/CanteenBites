@@ -38,10 +38,6 @@ export const BitesAIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  if (pathname === '/') {
-    return null;
-  }
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome-msg',

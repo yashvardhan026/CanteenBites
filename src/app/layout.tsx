@@ -6,29 +6,29 @@ import { ToastContainer } from "@/components/common/ToastContainer";
 import { BitesAIAssistant } from "@/components/ai/BitesAIAssistant";
 
 export const metadata: Metadata = {
-  title: "Nimbus AI — Document Intelligence & Question Answering API",
-  description: "The developer-first API that summarises, extracts, and answers questions about complex documents in milliseconds.",
+  title: "CanteenBites — Smart Campus Food Ordering & Hostel Delivery",
+  description: "Explore your college canteen menu, order your favourites, track preparation live, and get food delivered straight to your hostel.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Nimbus AI — Document Intelligence & Question Answering API",
-    description: "The developer-first API that summarises, extracts, and answers questions about complex documents in milliseconds.",
-    url: "https://nimbus.ai",
-    siteName: "Nimbus AI",
+    title: "CanteenBites — Smart Campus Food Ordering & Hostel Delivery",
+    description: "Skip the physical queue! Order from your campus canteen, track kitchen prep in real time, and enjoy door-to-door hostel room delivery.",
+    url: "https://canteen-bites-ufe9.vercel.app",
+    siteName: "CanteenBites",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nimbus AI — Document Intelligence & Question Answering API",
-    description: "The developer-first API that summarises, extracts, and answers questions about complex documents in milliseconds.",
+    title: "CanteenBites — Smart Campus Food Ordering & Hostel Delivery",
+    description: "Skip physical queues with real-time college canteen food ordering and hostel room delivery.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7c3aed",
+  themeColor: "#0B1220",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -41,10 +41,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased bg-[#05060f] text-slate-100 selection:bg-violet-600 selection:text-white font-sans">
+    <html lang="en">
+      <body className="antialiased bg-[#0B1220] text-[#F8FAFC] selection:bg-[#FFB454] selection:text-[#0B1220] font-sans">
         <AppProvider>
-          <div className="min-h-screen flex flex-col bg-[#05060f]">
+          <div className="min-h-screen flex flex-col bg-[#0B1220]">
             <Navbar />
             <main className="flex-1">{children}</main>
             <ToastContainer />
