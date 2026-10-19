@@ -50,6 +50,7 @@ export const StudentCart: React.FC = () => {
     placeOrder,
     setActiveNavTab,
     showToast,
+    switchRole,
   } = useApp();
 
   const [couponInput, setCouponInput] = useState('');
@@ -59,9 +60,25 @@ export const StudentCart: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<'UPI' | 'CASH' | 'CAMPUS_WALLET' | 'CARD' | 'NET_BANKING' | 'WALLET'>('UPI');
   const [selectedUpiApp, setSelectedUpiApp] = useState<'PAYTM' | 'GPAY' | 'PHONEPE' | 'QR'>('PAYTM');
   const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>('UPI_PAYTM');
-  const [upiId, setUpiId] = useState('student@paytm');
+  const [upiId, setUpiId] = useState(
+    user?.phone ? `${user.phone.replace(/\D/g, '').slice(-10)}@paytm` : '9876543210@paytm'
+  );
   const [selectedBank, setSelectedBank] = useState('State Bank of India (SBI)');
   const [selectedWallet, setSelectedWallet] = useState('Paytm Wallet');
+
+  // Keep Cash method synchronized with OrderType
+  React.useEffect(() => {
+    if (selectedCategory === 'CASH') {
+      setSelectedPayment(orderType === 'HOSTEL_DELIVERY' ? 'CASH_ON_DELIVERY' : 'CASH_ON_PICKUP');
+    }
+  }, [orderType, selectedCategory]);
+
+  // Update default UPI ID if user loads
+  React.useEffect(() => {
+    if (user?.phone && upiId === '9876543210@paytm') {
+      setUpiId(`${user.phone.replace(/\D/g, '').slice(-10)}@paytm`);
+    }
+  }, [user]);
 
   // Card fields
   const [cardNumber, setCardNumber] = useState('4532 8920 4410 7821');
@@ -87,29 +104,52 @@ export const StudentCart: React.FC = () => {
     }
   };
 
-  const handleInitiatePayment = () => {
+  const handleInitiatePayment = async () => {
     // If Cash is selected, place order directly with zero extra clicks
     if (selectedCategory === 'CASH') {
       const cashMethod: PaymentMethod =
         orderType === 'HOSTEL_DELIVERY' ? 'CASH_ON_DELIVERY' : 'CASH_ON_PICKUP';
-      handleDirectOrder(cashMethod);
+      try {
+        await handleDirectOrder(cashMethod);
+      } catch (e) {
+        // Handled in placeOrder / toast
+      }
       return;
     }
 
-    // Open Payment Gateway Modal for simulated authorization
+    // If Campus Meal Card is selected, place order directly with 1-tap deduction
+    if (selectedCategory === 'CAMPUS_WALLET') {
+      try {
+        const txId = `TXN-CAMPUS-WALLET-${Date.now().toString(36).toUpperCase()}`;
+        await handleDirectOrder('CAMPUS_WALLET', txId);
+      } catch (e) {
+        // Handled in placeOrder / toast
+      }
+      return;
+    }
+
+    // Open Payment Gateway Modal for simulated authorization (Paytm, GPay, PhonePe, QR, Cards, Net Banking)
     setIsGatewayOpen(true);
   };
 
   const handleDirectOrder = async (method: PaymentMethod, txId?: string) => {
     setIsPlacingOrder(true);
     try {
+      // Auto-ensure student hosteller is logged in if unauthenticated
+      if (!user) {
+        await switchRole('user-student-hosteller');
+      }
       const result = await placeOrder(method, txId);
       setIsPlacingOrder(false);
       if (result.success) {
         setIsGatewayOpen(false);
+        return result;
+      } else {
+        throw new Error(result.error || 'Failed to place order');
       }
-    } catch (e) {
+    } catch (e: any) {
       setIsPlacingOrder(false);
+      throw e;
     }
   };
 
@@ -706,9 +746,22 @@ export const StudentCart: React.FC = () => {
                   <span className="font-bold text-[#002E6E] flex items-center gap-1.5">
                     <span>Paytm Mobile / VPA</span>
                   </span>
-                  <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                    ⚡ Instant Checkout
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cleanPhone = user?.phone ? user.phone.replace(/\D/g, '').slice(-10) : '9876543210';
+                        setUpiId(`${cleanPhone}@paytm`);
+                        showToast('Autofilled', `Set Paytm VPA to ${cleanPhone}@paytm`, 'info');
+                      }}
+                      className="text-[10px] font-bold text-[#002E6E] bg-[#00BAF2]/10 hover:bg-[#00BAF2]/20 px-2 py-0.5 rounded-md border border-[#00BAF2]/30 transition-colors"
+                    >
+                      ⚡ Use My Phone
+                    </button>
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                      ⚡ Instant
+                    </span>
+                  </div>
                 </div>
                 <div className="flex gap-2">
                   <input
@@ -723,7 +776,7 @@ export const StudentCart: React.FC = () => {
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-500">
-                  Payment authorization will be verified with your registered Paytm app.
+                  Payment authorization will be verified via your registered Paytm app.
                 </p>
               </div>
             ) : selectedUpiApp === 'QR' ? (
@@ -977,9 +1030,21 @@ export const StudentCart: React.FC = () => {
               <span>
                 {selectedCategory === 'CASH'
                   ? `Confirm Order (${orderType === 'HOSTEL_DELIVERY' ? 'COD' : 'Pay at Counter'}) • ₹${billingSummary.total}`
+                  : selectedCategory === 'CAMPUS_WALLET'
+                  ? `Pay ₹${billingSummary.total} with Campus Meal Card`
                   : selectedCategory === 'UPI' && selectedUpiApp === 'PAYTM'
-                  ? `Pay ₹${billingSummary.total} via Paytm`
-                  : `Proceed to Pay • ₹${billingSummary.total}`}
+                  ? `Pay ₹${billingSummary.total} via Paytm UPI`
+                  : selectedCategory === 'UPI' && selectedUpiApp === 'QR'
+                  ? `Scan & Pay ₹${billingSummary.total} via UPI QR`
+                  : selectedCategory === 'UPI' && selectedUpiApp === 'GPAY'
+                  ? `Pay ₹${billingSummary.total} with Google Pay`
+                  : selectedCategory === 'UPI' && selectedUpiApp === 'PHONEPE'
+                  ? `Pay ₹${billingSummary.total} with PhonePe`
+                  : selectedCategory === 'CARD'
+                  ? `Pay ₹${billingSummary.total} with Card`
+                  : selectedCategory === 'NET_BANKING'
+                  ? `Proceed to Net Banking • ₹${billingSummary.total}`
+                  : `Pay ₹${billingSummary.total} with Wallet`}
               </span>
               <ArrowRight className="w-4 h-4" />
             </>
@@ -1005,6 +1070,7 @@ export const StudentCart: React.FC = () => {
         orderType={orderType}
         defaultMethod={selectedPayment}
         defaultUpiApp={selectedUpiApp}
+        defaultUpiId={upiId}
         onPaymentSuccess={handlePaymentSuccessFromGateway}
       />
     </div>
