@@ -599,7 +599,7 @@
       "isAvailable": true,
       "prepTimeMinutes": 8,
       "category": "CHINESE",
-      "image": "https://images.unsplash.com/photo-1548946526-f69e2424cf45?auto=format&fit=crop&w=600&q=80",
+      "image": "/images/spring-rolls.jpg",
       "rating": 4.6,
       "calories": 310
     },
