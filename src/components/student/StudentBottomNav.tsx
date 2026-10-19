@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useApp } from '@/context/AppContext';
-import { Home, Search, ShoppingBag, Package, User } from 'lucide-react';
+import { Home, Search, ShoppingBag, Package, User, ArrowRight } from 'lucide-react';
 
 interface NavItem {
   id: 'home' | 'search' | 'cart' | 'orders' | 'profile';
@@ -13,9 +13,10 @@ interface NavItem {
 }
 
 export const StudentBottomNav: React.FC = () => {
-  const { activeNavTab, setActiveNavTab, cart, orders } = useApp();
+  const { activeNavTab, setActiveNavTab, cart, orders, selectedCanteen } = useApp();
 
   const cartCount = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+  const cartTotal = cart.reduce((acc, curr) => acc + curr.menuItem.price * curr.quantity, 0);
 
   const hasActiveOrder = orders.some((o) =>
     ['PENDING_ACCEPTANCE', 'ACCEPTED', 'PREPARING', 'READY', 'OUT_FOR_DELIVERY'].includes(o.status)
@@ -30,7 +31,38 @@ export const StudentBottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-1.5 shadow-lg sm:max-w-md sm:mx-auto sm:rounded-t-2xl sm:bottom-0 transition-all">
+    <>
+      {/* Floating Quick-Cart Bar (Mobile & Tablet) */}
+      {cartCount > 0 && activeNavTab !== 'cart' && (
+        <div className="fixed bottom-16 sm:bottom-[4.5rem] left-3 right-3 sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-md z-40 animate-slide-up pointer-events-auto">
+          <div
+            onClick={() => setActiveNavTab('cart')}
+            className="p-3 px-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-2xl shadow-indigo-950/40 border border-slate-700/80 flex items-center justify-between cursor-pointer hover:scale-[1.01] active:scale-[0.99] transition-all group backdrop-blur-md"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xs shadow-sm group-hover:scale-105 transition-transform flex-shrink-0">
+                <ShoppingBag className="w-4 h-4" />
+              </div>
+              <div className="text-left">
+                <div className="text-xs font-black tracking-tight flex items-center gap-1.5">
+                  <span>{cartCount} {cartCount === 1 ? 'item' : 'items'}</span>
+                  <span className="text-slate-400">•</span>
+                  <span className="text-emerald-400 font-extrabold">₹{cartTotal}</span>
+                </div>
+                <p className="text-[10px] text-slate-300 line-clamp-1">
+                  {selectedCanteen?.name || 'Campus Canteen'}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-brand-600 group-hover:bg-brand-500 font-extrabold text-xs text-white shadow-sm transition-colors flex-shrink-0">
+              <span>View Cart</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-1.5 shadow-lg sm:max-w-md sm:mx-auto sm:rounded-t-2xl sm:bottom-0 transition-all">
       <div className="flex items-center justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -78,5 +110,6 @@ export const StudentBottomNav: React.FC = () => {
         })}
       </div>
     </nav>
+    </>
   );
 };

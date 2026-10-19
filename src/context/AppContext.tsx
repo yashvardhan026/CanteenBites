@@ -241,13 +241,38 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     [showToast]
   );
 
-  // Initialize initial user & data
+  // Initialize initial user & data, hydrate cart from localStorage
   useEffect(() => {
     refreshCanteens();
     refreshSettings();
     // Default to Aarav Sharma (Hosteller)
     switchRole('user-student-hosteller');
+
+    try {
+      if (typeof window !== 'undefined') {
+        const savedCart = localStorage.getItem('cb_cart');
+        if (savedCart) {
+          const parsed = JSON.parse(savedCart);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setCart(parsed);
+          }
+        }
+      }
+    } catch (e) {
+      // Ignore localStorage read errors
+    }
   }, []);
+
+  // Sync cart to localStorage
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cb_cart', JSON.stringify(cart));
+      }
+    } catch (e) {
+      // Ignore localStorage write errors
+    }
+  }, [cart]);
 
   // When user changes, reload user-specific data
   useEffect(() => {

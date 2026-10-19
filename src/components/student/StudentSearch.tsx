@@ -28,16 +28,26 @@ export const StudentSearch: React.FC = () => {
     'Masala Dosa',
   ];
 
+  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+
   useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+    }, 250);
+    return () => clearTimeout(handler);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    let isCancelled = false;
     setLoading(true);
     let url = `/api/menu?`;
     if (selectedCanteenId !== 'ALL') url += `canteenId=${selectedCanteenId}&`;
-    if (searchTerm) url += `search=${encodeURIComponent(searchTerm)}`;
+    if (debouncedSearch.trim()) url += `search=${encodeURIComponent(debouncedSearch.trim())}`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success && data.items) {
+        if (!isCancelled && data.success && data.items) {
           let list: MenuItem[] = data.items;
           if (isVegOnly) {
             list = list.filter((i) => i.isVeg);
@@ -47,10 +57,25 @@ export const StudentSearch: React.FC = () => {
         }
       })
       .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, [searchTerm, selectedCanteenId, isVegOnly, maxPrice]);
+      .finally(() => {
+        if (!isCancelled) setLoading(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [debouncedSearch, selectedCanteenId, isVegOnly, maxPrice]);
 
   const handleAddItem = (item: MenuItem) => {
+    if (!item.isAvailable) {
+      showToast('Item Unavailable', 'This food item is currently out of stock.', 'warning');
+      return;
+    }
+    addToCart(item);
+    showToast('Added to Cart', `${item.name} added to your tray`, 'success');
+  };
+
+  const handleOpenCustomize = (item: MenuItem) => {
     if (!item.isAvailable) {
       showToast('Item Unavailable', 'This food item is currently out of stock.', 'warning');
       return;
@@ -249,48 +274,72 @@ export const StudentSearch: React.FC = () => {
                     <span className="font-black text-slate-900 text-sm">₹{item.price}</span>
 
                     {cartItem ? (
-                      <div className="flex items-center gap-1 p-0.5 rounded-lg bg-brand-50 border border-brand-200 animate-scale-in">
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1 p-0.5 rounded-lg bg-brand-50 border border-brand-200 animate-scale-in">
+                          <button
+                            onClick={() => {
+                              if (cartItem.quantity <= 1) {
+                                removeFromCart(item.id);
+                                showToast('Removed', `${item.name} removed`, 'info');
+                              } else {
+                                updateCartQuantity(item.id, cartItem.quantity - 1);
+                              }
+                            }}
+                            className="w-5 h-5 rounded-md bg-white text-brand-700 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors text-xs font-bold active:scale-90"
+                            title="Decrease quantity"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span
+                            key={cartItem.quantity}
+                            className="w-4 text-center font-black text-xs text-brand-700 animate-scale-in"
+                          >
+                            {cartItem.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateCartQuantity(item.id, cartItem.quantity + 1)}
+                            className="w-5 h-5 rounded-md bg-brand-600 text-white hover:bg-brand-700 flex items-center justify-center transition-colors text-xs font-bold active:scale-90"
+                            title="Increase quantity"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
                         <button
-                          onClick={() => {
-                            if (cartItem.quantity <= 1) {
-                              removeFromCart(item.id);
-                              showToast('Removed', `${item.name} removed`, 'info');
-                            } else {
-                              updateCartQuantity(item.id, cartItem.quantity - 1);
-                            }
-                          }}
-                          className="w-5 h-5 rounded-md bg-white text-brand-700 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors text-xs font-bold active:scale-90"
-                          title="Decrease quantity"
+                          onClick={() => handleOpenCustomize(item)}
+                          className="w-6 h-6 rounded-lg flex items-center justify-center text-slate-500 hover:text-brand-600 hover:bg-brand-50 border border-slate-200 transition-colors"
+                          title="Special instructions / notes"
+                          aria-label="Add cooking instructions"
                         >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <span
-                          key={cartItem.quantity}
-                          className="w-4 text-center font-black text-xs text-brand-700 animate-scale-in"
-                        >
-                          {cartItem.quantity}
-                        </span>
-                        <button
-                          onClick={() => updateCartQuantity(item.id, cartItem.quantity + 1)}
-                          className="w-5 h-5 rounded-md bg-brand-600 text-white hover:bg-brand-700 flex items-center justify-center transition-colors text-xs font-bold active:scale-90"
-                          title="Increase quantity"
-                        >
-                          <Plus className="w-3 h-3" />
+                          <SlidersHorizontal className="w-3 h-3" />
                         </button>
                       </div>
                     ) : (
-                      <button
-                        onClick={() => handleAddItem(item)}
-                        disabled={!item.isAvailable}
-                        className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-bold text-xs transition-all active:scale-95 shadow-2xs ${
-                          item.isAvailable
-                            ? 'bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white border border-brand-200'
-                            : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
-                        }`}
-                      >
-                        <Plus className="w-3 h-3" />
-                        <span>Add</span>
-                      </button>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handleAddItem(item)}
+                          disabled={!item.isAvailable}
+                          className={`flex items-center gap-1 px-2.5 py-1 rounded-lg font-bold text-xs transition-all active:scale-95 shadow-2xs ${
+                            item.isAvailable
+                              ? 'bg-brand-50 text-brand-600 hover:bg-brand-600 hover:text-white border border-brand-200'
+                              : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
+                          }`}
+                        >
+                          <Plus className="w-3 h-3" />
+                          <span>Add</span>
+                        </button>
+                        {item.isAvailable && (
+                          <button
+                            onClick={() => handleOpenCustomize(item)}
+                            className="w-6 h-6 rounded-lg flex items-center justify-center text-slate-400 hover:text-brand-600 hover:bg-brand-50 border border-slate-200 transition-colors"
+                            title="Special instructions / notes"
+                            aria-label="Add cooking instructions"
+                          >
+                            <SlidersHorizontal className="w-3 h-3" />
+                          </button>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
