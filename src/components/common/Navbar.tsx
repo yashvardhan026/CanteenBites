@@ -49,6 +49,10 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (pathname === '/') {
+    return null;
+  }
+
   const cartItemsCount = cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
   const getRoleBadge = () => {

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { MenuItem, Order } from '@/types';
 import {
@@ -31,11 +32,16 @@ interface ChatMessage {
 }
 
 export const BitesAIAssistant: React.FC = () => {
+  const pathname = usePathname();
   const { user, addToCart, setActiveNavTab, showToast, activeOrder } = useApp();
 
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  if (pathname === '/') {
+    return null;
+  }
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome-msg',

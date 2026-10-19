@@ -9,26 +9,88 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #f8fafc;
+  color: #f1f5f9;
+  background-color: #05060f;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbars for menus */
+/* Custom dark scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #05060f;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: rgba(124, 58, 237, 0.4);
+}
+
+/* Pure CSS Aurora Animation for Hero */
+@keyframes aurora-blob-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(60px, -40px) scale(1.15);
+  }
+  66% {
+    transform: translate(-40px, 30px) scale(0.95);
+  }
+}
+
+@keyframes aurora-blob-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-70px, 40px) scale(1.2);
+  }
+  66% {
+    transform: translate(50px, -30px) scale(0.9);
+  }
+}
+
+@keyframes aurora-blob-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(40px, 50px) scale(1.12);
+  }
+}
+
+.animate-aurora-blob-1 {
+  animation: aurora-blob-1 18s ease-in-out infinite;
+}
+
+.animate-aurora-blob-2 {
+  animation: aurora-blob-2 22s ease-in-out infinite;
+}
+
+.animate-aurora-blob-3 {
+  animation: aurora-blob-3 26s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora-blob-1,
+  .animate-aurora-blob-2,
+  .animate-aurora-blob-3 {
+    animation: none !important;
+  }
+}
+
+/* Glassy card utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Veg / Non-Veg Indicator styling */
