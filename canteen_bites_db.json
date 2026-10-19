@@ -1255,9 +1255,127 @@
       "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
       "id": "user-1791738453180-529",
       "createdAt": "2026-10-11T17:07:33.180Z"
+    },
+    {
+      "name": "Test Student",
+      "email": "test_1792436968794@sviet.ac.in",
+      "phone": "9171817611",
+      "role": "STUDENT",
+      "collegeId": "col-1",
+      "collegeName": "Swami Vivekanand Institute of Engineering & Technology",
+      "studentId": "22TEST99",
+      "studentType": "HOSTELLER",
+      "hostelDetails": {
+        "hostelId": "hostel-1",
+        "hostelName": "J-Block Boys Hostel",
+        "block": "Block B",
+        "floor": "2nd Floor",
+        "roomNumber": "204"
+      },
+      "isVerified": false,
+      "avatarUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
+      "id": "user-1792436968804-526",
+      "createdAt": "2026-10-19T19:09:28.804Z"
     }
   ],
   "orders": [
+    {
+      "userId": "user-student-hosteller",
+      "studentName": "Aarav Sharma",
+      "studentPhone": "9876543210",
+      "studentRoll": "21CS042",
+      "studentType": "HOSTELLER",
+      "collegeId": "sviet-campus",
+      "canteenId": "canteen-main",
+      "canteenName": "Main Campus Canteen",
+      "items": [
+        {
+          "menuItemId": "item-1",
+          "name": "Veg Crispy Burger",
+          "price": 70,
+          "quantity": 1,
+          "specialInstructions": "",
+          "isVeg": true,
+          "subtotal": 70
+        }
+      ],
+      "foodSubtotal": 70,
+      "platformFee": 5,
+      "deliveryCharge": 20,
+      "discount": 0,
+      "tax": 0,
+      "totalAmount": 95,
+      "orderType": "HOSTEL_DELIVERY",
+      "deliveryDetails": {
+        "hostelName": "H1 Boys Hostel",
+        "block": "Block A",
+        "floor": "2nd Floor",
+        "roomNumber": "204",
+        "deliveryStatus": "PENDING_CANTEEN_CONFIRMATION"
+      },
+      "paymentMethod": "CASH_ON_DELIVERY",
+      "paymentStatus": "PENDING",
+      "transactionId": "TXN-CASH_ON_DELIVERY-36968854",
+      "status": "PENDING_ACCEPTANCE",
+      "prepTimeMinutes": 42,
+      "estimatedReadyTime": "2026-10-19T19:51:28.854Z",
+      "id": "CB-20261019-79780",
+      "queuePosition": 6,
+      "createdAt": "2026-10-19T19:09:28.854Z",
+      "updatedAt": "2026-10-19T19:09:28.854Z",
+      "timeline": [
+        {
+          "status": "PENDING_ACCEPTANCE",
+          "timestamp": "2026-10-19T19:09:28.854Z",
+          "note": "Order placed by student"
+        }
+      ]
+    },
+    {
+      "userId": "user-student-hosteller",
+      "studentName": "Aarav Sharma",
+      "studentPhone": "9876543210",
+      "studentRoll": "21CS042",
+      "studentType": "HOSTELLER",
+      "collegeId": "sviet-campus",
+      "canteenId": "canteen-main",
+      "canteenName": "Main Campus Canteen",
+      "items": [
+        {
+          "menuItemId": "item-1",
+          "name": "Veg Crispy Burger",
+          "price": 70,
+          "quantity": 1,
+          "specialInstructions": "",
+          "isVeg": true,
+          "subtotal": 70
+        }
+      ],
+      "foodSubtotal": 70,
+      "platformFee": 5,
+      "deliveryCharge": 0,
+      "discount": 0,
+      "tax": 0,
+      "totalAmount": 75,
+      "orderType": "CANTEEN_PICKUP",
+      "paymentMethod": "UPI_PAYTM",
+      "paymentStatus": "COMPLETED",
+      "transactionId": "TXN_PAYTM_1792436968826",
+      "status": "PENDING_ACCEPTANCE",
+      "prepTimeMinutes": 36,
+      "estimatedReadyTime": "2026-10-19T19:45:28.833Z",
+      "id": "CB-20261019-30419",
+      "queuePosition": 5,
+      "createdAt": "2026-10-19T19:09:28.833Z",
+      "updatedAt": "2026-10-19T19:09:28.833Z",
+      "timeline": [
+        {
+          "status": "PENDING_ACCEPTANCE",
+          "timestamp": "2026-10-19T19:09:28.833Z",
+          "note": "Order placed by student"
+        }
+      ]
+    },
     {
       "userId": "user-student-hosteller",
       "studentName": "Aarav Sharma",
@@ -1536,6 +1654,50 @@
     {
       "userId": "user-canteen-staff",
       "role": "CANTEEN_STAFF",
+      "orderId": "CB-20261019-79780",
+      "title": "New Order Received 🔔",
+      "message": "Aarav Sharma placed order CB-20261019-79780 (1 items, ₹95).",
+      "type": "ORDER",
+      "id": "notif-1792436968857-498",
+      "isRead": false,
+      "createdAt": "2026-10-19T19:09:28.857Z"
+    },
+    {
+      "userId": "user-student-hosteller",
+      "role": "STUDENT",
+      "orderId": "CB-20261019-79780",
+      "title": "Order Placed Successfully 🎉",
+      "message": "Your order CB-20261019-79780 for ₹95 has been sent to Main Campus Canteen.",
+      "type": "ORDER",
+      "id": "notif-1792436968856-954",
+      "isRead": false,
+      "createdAt": "2026-10-19T19:09:28.856Z"
+    },
+    {
+      "userId": "user-canteen-staff",
+      "role": "CANTEEN_STAFF",
+      "orderId": "CB-20261019-30419",
+      "title": "New Order Received 🔔",
+      "message": "Aarav Sharma placed order CB-20261019-30419 (1 items, ₹75).",
+      "type": "ORDER",
+      "id": "notif-1792436968836-137",
+      "isRead": false,
+      "createdAt": "2026-10-19T19:09:28.836Z"
+    },
+    {
+      "userId": "user-student-hosteller",
+      "role": "STUDENT",
+      "orderId": "CB-20261019-30419",
+      "title": "Order Placed Successfully 🎉",
+      "message": "Your order CB-20261019-30419 for ₹75 has been sent to Main Campus Canteen.",
+      "type": "ORDER",
+      "id": "notif-1792436968835-387",
+      "isRead": false,
+      "createdAt": "2026-10-19T19:09:28.835Z"
+    },
+    {
+      "userId": "user-canteen-staff",
+      "role": "CANTEEN_STAFF",
       "orderId": "CB-20261011-89865",
       "title": "New Order Received 🔔",
       "message": "Aarav Sharma placed order CB-20261011-89865 (1 items, ₹95).",
@@ -1711,6 +1873,15 @@
     }
   ],
   "auditLogs": [
+    {
+      "userId": "user-admin",
+      "userName": "Yash Vardhan",
+      "userRole": "ADMIN",
+      "action": "DATABASE_BACKUP_DOWNLOADED",
+      "details": "Full database backup JSON exported at 2026-10-19T19:09:28.814Z",
+      "id": "audit-1792436968814",
+      "timestamp": "2026-10-19T19:09:28.814Z"
+    },
     {
       "userId": "user-admin",
       "userName": "Yash Vardhan",

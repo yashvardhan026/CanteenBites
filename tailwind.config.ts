@@ -84,6 +84,20 @@ const config: Config = {
         'shimmer': {
           '100%': { transform: 'translateX(100%)' },
         },
+        'drift-blob-1': {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -25px) scale(1.08)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+        },
+        'drift-blob-2': {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(-25px, 30px) scale(1.05)' },
+          '66%': { transform: 'translate(25px, -15px) scale(0.96)' },
+        },
+        'typing-bounce': {
+          '0%, 80%, 100%': { transform: 'translateY(0)' },
+          '40%': { transform: 'translateY(-6px)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
@@ -94,6 +108,11 @@ const config: Config = {
         'pulse-subtle': 'pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'badge-bounce': 'badge-bounce 350ms cubic-bezier(0.16, 1, 0.3, 1)',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'drift-1': 'drift-blob-1 12s ease-in-out infinite',
+        'drift-2': 'drift-blob-2 15s ease-in-out infinite',
+        'typing-1': 'typing-bounce 1.2s infinite ease-in-out',
+        'typing-2': 'typing-bounce 1.2s infinite ease-in-out 0.2s',
+        'typing-3': 'typing-bounce 1.2s infinite ease-in-out 0.4s',
       }
     },
   },

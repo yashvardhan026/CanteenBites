@@ -9,7 +9,7 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({
   size = 'md',
   showTagline = false,
-  inverted = false,
+  inverted = true,
 }) => {
   const iconSizes = {
     sm: 'w-7 h-7',
@@ -30,10 +30,10 @@ export const Logo: React.FC<LogoProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-2.5 select-none">
+    <div className="flex items-center gap-2.5 select-none group cursor-pointer">
       {/* CanteenBites Mark */}
       <div
-        className={`${iconSizes[size]} relative flex items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-violet-500 shadow-md shadow-brand-500/25 text-white flex-shrink-0`}
+        className={`${iconSizes[size]} relative flex items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-amber-500 shadow-md shadow-brand-500/25 text-white flex-shrink-0 group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300`}
       >
         {/* Stylized Fork & Bite Smile */}
         <svg
@@ -63,12 +63,12 @@ export const Logo: React.FC<LogoProps> = ({
       <div className="flex flex-col leading-none">
         <div className={`font-black tracking-tight ${textSizes[size]}`}>
           <span className={inverted ? 'text-white' : 'text-slate-900'}>Canteen</span>
-          <span className="text-brand-600">Bites</span>
+          <span className="text-[#FFB454] group-hover:text-amber-300 transition-colors">Bites</span>
         </div>
         {showTagline && (
           <span
             className={`font-semibold tracking-wider uppercase mt-0.5 ${taglineSizes[size]} ${
-              inverted ? 'text-indigo-200' : 'text-slate-500'
+              inverted ? 'text-slate-400' : 'text-slate-500'
             }`}
           >
             Order. Track. Enjoy.

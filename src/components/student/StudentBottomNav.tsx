@@ -62,7 +62,7 @@ export const StudentBottomNav: React.FC = () => {
         </div>
       )}
 
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3 py-1.5 shadow-lg sm:max-w-md sm:mx-auto sm:rounded-t-2xl sm:bottom-0 transition-all">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#151F32]/95 backdrop-blur-xl border-t border-white/10 px-3 py-1.5 shadow-2xl sm:max-w-md sm:mx-auto sm:rounded-t-2xl sm:bottom-0 transition-all">
       <div className="flex items-center justify-around">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -73,8 +73,8 @@ export const StudentBottomNav: React.FC = () => {
               onClick={() => setActiveNavTab(item.id)}
               className={`relative flex flex-col items-center justify-center py-1.5 px-3.5 rounded-2xl transition-all duration-200 active:scale-95 ${
                 isActive
-                  ? 'text-brand-600 bg-brand-50/80 font-black shadow-2xs'
-                  : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50/50'
+                  ? 'text-[#FFB454] bg-[#0B1220] font-black shadow-xs'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`}
             >
               <div className="relative">
@@ -86,7 +86,7 @@ export const StudentBottomNav: React.FC = () => {
                 {item.badge !== undefined && item.badge > 0 && (
                   <span
                     key={item.badge}
-                    className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-600 px-1 text-[9px] font-black text-white shadow-sm ring-1 ring-white animate-badge-bounce"
+                    className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#FFB454] px-1 text-[9px] font-black text-[#0B1220] shadow-sm ring-1 ring-[#0B1220] animate-badge-bounce"
                   >
                     {item.badge}
                   </span>
@@ -100,7 +100,7 @@ export const StudentBottomNav: React.FC = () => {
               </div>
               <span
                 className={`text-[10px] mt-0.5 font-bold tracking-tight transition-colors duration-200 ${
-                  isActive ? 'text-brand-600' : 'text-slate-500'
+                  isActive ? 'text-[#FFB454]' : 'text-slate-400'
                 }`}
               >
                 {item.label}
